@@ -1,0 +1,58 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Poppins", ui-sans-serif, system-ui, sans-serif;
+  
+  /* Background & Foreground (Dark theme by default) */
+  --color-background: #000000;
+  --color-foreground: #FFFFFF; /* Ultra White */
+  
+  /* Muted elements using Silver Ray */
+  --color-muted: #1f1f22;
+  --color-muted-foreground: #C0C0C0; /* Silver Ray */
+  
+  /* Primary: Ultraman Red */
+  --color-primary: #FF0000; /* Ultraman Red */
+  --color-primary-foreground: #FFFFFF; /* Ultra White */
+  --color-primary-500: #FF0000; /* Ultraman Red */
+  --color-primary-600: #cc0000; 
+  
+  /* Borders and Inputs */
+  --color-border: #27272a;
+  --color-input: #27272a;
+  
+  /* Secondary/Accent: Blazer Blue */
+  --color-accent: #0044FF; /* Blazer Blue */
+  --color-accent-foreground: #FFFFFF; /* Ultra White */
+  
+  /* Specific colors used in gradients and accents */
+  --color-blue-400: #0044FF; /* Overwrite Tailwind's blue-400 for Blazer Blue in the glowing backgrounds */
+  --color-yellow-300: #FFD700; /* Overwrite Tailwind's yellow-300 for Beam Yellow */
+  --color-green-500: #00FF00; /* Monster Green */
+}
+
+@utility container {
+  margin-inline: auto;
+  max-width: 1280px;
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
