@@ -1,0 +1,42 @@
+{
+  "title": "My Website",
+  "description": "Hello World!",
+  "thumbnail": "./Test.jpg",
+  "url": "https://example.com",
+  "language": "id-ID",
+  "author": "Your Name",
+  "keywords": ["community", "coding", "website"],
+  "theme": "light",
+  "navbar": {
+    "logo": "./Logo.png",
+    "links": [
+      { "label": "Home", "url": "/" },
+      { "label": "About", "url": "/about" },
+      { "label": "Contact", "url": "/contact" }
+    ]
+  },
+  "footer": {
+    "copyright": "© 2024 My Website. All rights reserved.",
+    "links": [
+      { "label": "Privacy Policy", "url": "/privacy" },
+      { "label": "Terms of Service", "url": "/terms" }
+    ]
+  },
+  "community": [
+    {
+      "name": "Coding Group",
+      "icon": "facebook",
+      "url": "https://facebook.com/groups/coding"
+    },
+    {
+      "name": "Discord Server",
+      "icon": "discord",
+      "url": "https://discord.gg/example"
+    },
+    {
+      "name": "WhatsApp Group",
+      "icon": "whatsapp",
+      "url": "https://chat.whatsapp.com/example"
+    }
+  ]
+}
