@@ -1,5 +1,6 @@
 import { motion } from 'motion/react';
 import React from 'react';
+import { config } from '../config';
 
 export function Hero() {
   return (
@@ -40,8 +41,7 @@ export function Hero() {
                 </span>
               </h1>
               <p className="max-w-[600px] text-muted-foreground md:text-xl">
-                Sirkel IT & Gaming paling sepi yang pernah ada (lebih sepi daripada kuburan☠). Tempat berbagi info
-                dan meme bersama para anomali yang enggan yapping (katanya).
+                {config.description}
               </p>
             </div>
             <div className="flex flex-col sm:flex-row gap-4 w-full sm:w-auto">
@@ -68,7 +68,7 @@ export function Hero() {
               <div className="hidden sm:block h-10 border-r border-border mx-4"></div>
               <div className="flex flex-col items-center">
                 <div className="text-2xl font-bold bg-clip-text text-primary-500">
-                  3
+                  {config.community.length}
                 </div>
                 <div className="text-xs text-muted-foreground">Platform</div>
               </div>
@@ -89,8 +89,8 @@ export function Hero() {
             className="relative w-full lg:w-auto mx-auto lg:ml-auto"
           >
             <img
-              src="https://imphnen.dev/logo.webp"
-              alt="logo"
+              src={config.thumbnail}
+              alt="thumbnail"
               width="600"
               height="500"
               className="w-full h-auto object-cover"
