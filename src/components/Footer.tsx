@@ -1,4 +1,5 @@
 import React from 'react';
+import { config } from '../config';
 
 export function Footer() {
   return (
@@ -7,7 +8,7 @@ export function Footer() {
         <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-4">
           <div className="space-y-4">
             <a href="/" className="font-bold text-2xl tracking-tight bg-clip-text text-transparent bg-gradient-to-r from-primary-500 to-primary-600">
-              BlackberryHazard
+              {config.title}
             </a>
             <p className="text-sm text-muted-foreground w-full max-w-xs">
               Sepi amat, kayak kuburan
