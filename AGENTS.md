@@ -14,10 +14,9 @@
 ## 2. Tech Stack
 
 - **Language**      : TypeScript
-- **Framework**     : React 18 + Vite
+- **Framework**     : Astro JS + React
 - **Styling**       : Tailwind CSS
-- **UI Library**    : -
-- **State Management** : Zustand
+- **Icons**         : Astro Icon
 - **Data Fetching** : Axios
 - **Testing**       : Vitest
 - **Package Manager** : npm
