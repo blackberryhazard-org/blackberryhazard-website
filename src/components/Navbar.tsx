@@ -1,4 +1,4 @@
-import { Menu, X } from 'lucide-react';
+import { Icon } from '@iconify/react';
 import React, { useState } from 'react';
 import { config } from '../config';
 
@@ -30,7 +30,7 @@ export function Navbar() {
           onClick={() => setIsMenuOpen(!isMenuOpen)}
           aria-label="Toggle menu"
         >
-          {isMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+          {isMenuOpen ? <Icon icon="lucide:x" className="w-6 h-6" /> : <Icon icon="lucide:menu" className="w-6 h-6" />}
         </button>
       </div>
 

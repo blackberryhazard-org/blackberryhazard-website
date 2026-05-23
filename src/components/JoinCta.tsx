@@ -1,5 +1,6 @@
 import { motion } from 'motion/react';
 import React from 'react';
+import { Icon } from '@iconify/react';
 
 export function JoinCta() {
   return (
@@ -41,13 +42,7 @@ export function JoinCta() {
                 className="flex items-center gap-4 px-8 py-4 bg-yellow-300 hover:bg-yellow-400 text-gray-900 rounded-full text-lg font-semibold transition-all hover:gap-6 group"
               >
                 <span>Join Sekarang</span>
-                <svg
-                  fill="currentColor"
-                  viewBox="0 0 448 512"
-                  className="w-5 h-5 transition-all group-hover:rotate-45"
-                >
-                  <path d="M438.6 278.6c12.5-12.5 12.5-32.8 0-45.3l-160-160c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L338.8 224 32 224c-17.7 0-32 14.3-32 32s14.3 32 32 32l306.7 0L233.4 393.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0l160-160z"></path>
-                </svg>
+                <Icon icon="fa6-solid:arrow-right" className="w-5 h-5 transition-all group-hover:-rotate-45" />
               </a>
             </div>
           </motion.div>

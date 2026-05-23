@@ -1,12 +1,13 @@
 import { defineConfig } from 'astro/config';
 import react from '@astrojs/react';
 import tailwindcss from '@tailwindcss/vite';
+import icon from 'astro-icon';
 import { loadEnv } from 'vite';
 
 const env = loadEnv(process.env.NODE_ENV || 'development', process.cwd(), '');
 
 export default defineConfig({
-  integrations: [react()],
+  integrations: [react(), icon()],
   vite: {
     plugins: [tailwindcss()],
     define: {
