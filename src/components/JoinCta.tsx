@@ -37,7 +37,7 @@ export function JoinCta() {
             </p>
             <div className="flex justify-center lg:justify-start">
               <a
-                href="https://imphnen.dev/#community"
+                href="#community"
                 className="flex items-center gap-4 px-8 py-4 bg-yellow-300 hover:bg-yellow-400 text-gray-900 rounded-full text-lg font-semibold transition-all hover:gap-6 group"
               >
                 <span>Join Sekarang</span>
@@ -49,30 +49,6 @@ export function JoinCta() {
                   <path d="M438.6 278.6c12.5-12.5 12.5-32.8 0-45.3l-160-160c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L338.8 224 32 224c-17.7 0-32 14.3-32 32s14.3 32 32 32l306.7 0L233.4 393.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0l160-160z"></path>
                 </svg>
               </a>
-            </div>
-          </motion.div>
-          <motion.div
-            initial={{ opacity: 0, x: 30 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5, ease: "easeOut", delay: 0.2 }}
-            className="flex-1 max-w-xl"
-          >
-            <div className="relative p-8">
-              <div className="absolute inset-0 bg-white/10 rounded-3xl transform rotate-6"></div>
-              <div className="relative bg-white/5 rounded-3xl p-8 backdrop-blur-lg border border-white/10">
-                <div className="flex flex-col items-center gap-6 text-white">
-                  <img
-                    src="https://imphnen.dev/logo.webp"
-                    alt="IMPHNEN"
-                    className="w-[240px] h-auto"
-                  />
-                  <div className="text-center space-y-2">
-                    <h3 className="text-2xl font-bold">250.000+</h3>
-                    <p className="text-lg">Programmer Sudah Bergabung</p>
-                  </div>
-                </div>
-              </div>
             </div>
           </motion.div>
         </div>
