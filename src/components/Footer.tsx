@@ -10,9 +10,6 @@ export function Footer() {
             <a href="/" className="font-bold text-2xl tracking-tight bg-clip-text text-transparent bg-gradient-to-r from-primary-500 to-primary-600">
               {config.title}
             </a>
-            <p className="text-sm text-muted-foreground w-full max-w-xs">
-              Sepi amat, kayak kuburan
-            </p>
           </div>
 
           <div className="space-y-4">
@@ -53,9 +50,6 @@ export function Footer() {
         <div className="mt-8 border-t border-border pt-8 flex flex-col md:flex-row justify-between items-center gap-4">
           <p className="text-sm text-muted-foreground">
             &copy; {new Date().getFullYear()} IMPHNEN. All rights reserved.
-          </p>
-          <p className="text-sm justify-center items-center flex gap-1 text-muted-foreground">
-            Powered by <a href="https://ancikri.com/" className="text-foreground hover:underline">Ancikri</a>
           </p>
         </div>
       </div>
