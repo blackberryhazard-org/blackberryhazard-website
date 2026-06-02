@@ -1,5 +1,5 @@
 import { Menu, X } from 'lucide-react';
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { config } from '../config';
 
 export function Navbar() {
@@ -16,10 +16,12 @@ export function Navbar() {
 
         {/* Desktop Nav */}
         <nav className="hidden md:flex items-center gap-6 text-sm font-medium">
-          <a href="#community" className="text-muted-foreground hover:text-foreground transition-colors">Komunitas</a>
-          <a href="#" className="text-muted-foreground hover:text-foreground transition-colors">Event</a>
-          <a href="#" className="text-muted-foreground hover:text-foreground transition-colors">Testimoni</a>
-          <a href="#" className="bg-primary text-primary-foreground px-4 py-2 rounded-lg hover:bg-primary/90 transition-colors">
+          {config.navbar.links.map((link) => (
+            <a key={link.label} href={link.url} className="text-muted-foreground hover:text-foreground transition-colors">
+              {link.label}
+            </a>
+          ))}
+          <a href="#community" className="bg-primary text-primary-foreground px-4 py-2 rounded-lg hover:bg-primary/90 transition-colors">
             Join
           </a>
         </nav>
@@ -38,29 +40,18 @@ export function Navbar() {
       {isMenuOpen && (
         <div className="md:hidden absolute top-16 left-0 w-full bg-background border-b border-border shadow-lg animate-[fadeIn_0.2s_ease-out]">
           <nav className="flex flex-col p-4 space-y-4">
+            {config.navbar.links.map((link) => (
+              <a
+                key={link.label}
+                href={link.url}
+                className="text-foreground font-medium p-2 hover:bg-muted rounded-md"
+                onClick={() => setIsMenuOpen(false)}
+              >
+                {link.label}
+              </a>
+            ))}
             <a
               href="#community"
-              className="text-foreground font-medium p-2 hover:bg-muted rounded-md"
-              onClick={() => setIsMenuOpen(false)}
-            >
-              Komunitas
-            </a>
-            <a
-              href="#"
-              className="text-foreground font-medium p-2 hover:bg-muted rounded-md"
-              onClick={() => setIsMenuOpen(false)}
-            >
-              Event
-            </a>
-            <a
-              href="#"
-              className="text-foreground font-medium p-2 hover:bg-muted rounded-md"
-              onClick={() => setIsMenuOpen(false)}
-            >
-              Testimoni
-            </a>
-            <a
-              href="#"
               className="bg-primary text-primary-foreground text-center px-4 py-2 rounded-lg hover:bg-primary/90 transition-colors mt-2"
               onClick={() => setIsMenuOpen(false)}
             >

@@ -1,9 +1,8 @@
 import { motion } from 'motion/react';
-import React from 'react';
 
 export function Testimonials() {
   return (
-    <section className="w-full py-20 md:py-28 bg-muted/50">
+    <section id="testimonials" className="w-full py-20 md:py-28 bg-muted/50">
       <div className="container px-4 md:px-6 mx-auto">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -155,7 +154,7 @@ export function Testimonials() {
         </div>
         <div className="flex justify-center">
           <a
-            href="https://imphnen.dev/testimonials"
+            href="#community"
             className="inline-flex items-center justify-center rounded-lg bg-primary text-primary-foreground px-6 py-3 text-sm font-medium hover:bg-primary/90 transition-colors"
           >
             Tulis Testimonimu

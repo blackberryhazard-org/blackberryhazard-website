@@ -1,33 +1,35 @@
 {
-  "title": "My Website",
-  "description": "Hello World!",
-  "thumbnail": "./Test.jpg",
-  "url": "https://example.com",
+  "title": "BlackberryHazard",
+  "description": "Komunitas IT & gamer Indonesia. Tempat para penyuka Blackberry yang enggan yapping berkumpul, belajar, dan main bareng.",
+  "thumbnail": "./thumbnail.jpg",
+  "url": "https://blackberryhazard-website.pages.dev",
   "language": "id-ID",
-  "author": "Your Name",
-  "keywords": ["community", "coding", "website"],
-  "theme": "light",
+  "author": "BlackberryHazard",
+  "keywords": ["komunitas", "IT", "developer", "gamer", "indonesia", "blackberryhazard"],
+  "theme": "dark",
   "navbar": {
-    "logo": "./Logo.png",
+    "logo": "./logo.png",
     "links": [
-      { "label": "Home", "url": "/" },
-      { "label": "About", "url": "/about" },
-      { "label": "Contact", "url": "/contact" }
+      { "label": "Komunitas", "url": "#community" },
+      { "label": "Testimoni", "url": "#testimonials" }
     ]
   },
   "footer": {
-    "copyright": "© 2024 My Website. All rights reserved.",
-    "links": [
-      { "label": "Privacy Policy", "url": "/privacy" },
-      { "label": "Terms of Service", "url": "/terms" }
+    "copyright": "BlackberryHazard. All rights reserved.",
+    "menu": [
+      { "label": "Komunitas", "url": "#community" },
+      { "label": "Testimoni", "url": "#testimonials" }
+    ],
+    "legal": [
+      { "label": "Privacy Policy", "url": "#" },
+      { "label": "Terms of Service", "url": "#" }
     ]
   },
+  "social": [
+    { "label": "GitHub", "icon": "github", "url": "https://github.com/blackberryhazard-org" },
+    { "label": "Discord", "icon": "discord", "url": "https://discord.gg/example" }
+  ],
   "community": [
-    {
-      "name": "Coding Group",
-      "icon": "facebook",
-      "url": "https://facebook.com/groups/coding"
-    },
     {
       "name": "Discord Server",
       "icon": "discord",
@@ -37,6 +39,11 @@
       "name": "WhatsApp Group",
       "icon": "whatsapp",
       "url": "https://chat.whatsapp.com/example"
+    },
+    {
+      "name": "Facebook Group",
+      "icon": "facebook",
+      "url": "https://facebook.com/groups/example"
     }
   ]
 }

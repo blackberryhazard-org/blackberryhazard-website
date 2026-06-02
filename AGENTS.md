@@ -14,13 +14,17 @@
 ## 2. Tech Stack
 
 - **Language**      : TypeScript
-- **Framework**     : Astro JS + React
-- **Styling**       : Tailwind CSS
-- **Icons**         : Astro Icon
-- **Data Fetching** : Axios
-- **Testing**       : Vitest
+- **Framework**     : Astro + React (island architecture, `client:*` directives)
+- **Styling**       : Tailwind CSS v4 (via `@tailwindcss/vite`, tema di `src/index.css`)
+- **Animation**     : motion (`motion/react`)
+- **Icons**         : lucide-react + inline SVG
 - **Package Manager** : npm
-- **Deployment**    : Cloudflare Pages
+- **Deployment**    : Cloudflare Pages (output statis)
+
+> **Catatan kondisi saat ini:** proyek ini masih berupa landing page statis satu halaman.
+> Belum ada data fetching (Axios), state management (Zustand), maupun testing (Vitest).
+> Bagian konvensi di bawah yang menyebut layer tersebut adalah **target arah pengembangan**,
+> bukan kondisi sekarang — jangan asumsikan file/tooling-nya sudah ada.
 
 ---
 
@@ -28,61 +32,51 @@
 
 ```bash
 # Development
-npm run dev         # Jalankan dev server
-npm run build       # Build untuk production (tsc && vite build)
+npm run dev         # Dev server di http://localhost:3000
+npm run build       # Build statis untuk production ke dist/
 npm run preview     # Preview hasil build secara lokal
 
 # Kualitas Kode
-npm run lint        # Jalankan ESLint
-npm run format      # Format kode dengan Prettier (jika dikonfigurasi)
-
-# Testing
-npm run test        # Jalankan semua test dengan Vitest
-npm run test:ui     # Jalankan Vitest dengan UI (jika tersedia)
-npm run coverage    # Generate laporan coverage
+npm run lint        # Type-check dengan TypeScript (tsc --noEmit)
+npm run clean       # Hapus folder dist/
 ```
 
 > **Penting:** Selalu gunakan `npm`. Jangan gunakan `yarn`, `pnpm`, atau `bun`.
+>
+> Script `format`, `test`, dan `coverage` **belum dikonfigurasi**. Tambahkan
+> Prettier/ESLint/Vitest beserta script-nya dulu sebelum mengacu ke perintah tersebut.
 
 ---
 
 ## 4. Project Structure
 
-**Architecture:** Feature-based / by concern
+**Architecture:** Astro static site dengan React islands.
+
+Struktur aktual saat ini:
 
 ```
 blackberryhazard-website/
   src/
-    assets/          # Gambar, ikon, font, dan file statis lainnya
-    components/      # Komponen UI yang reusable (tombol, card, navbar, dll)
-    pages/           # Komponen tingkat halaman (HomePage, AboutPage, dll)
-    features/        # Logika dan komponen per fitur spesifik
-    hooks/           # Custom React hooks
-    stores/          # Zustand stores (state management)
-    services/        # Fungsi Axios untuk pemanggilan API eksternal
-    utils/           # Helper dan fungsi utilitas
-    types/           # TypeScript types dan interfaces global
-    App.tsx          # Root component
-    main.tsx         # Entry point aplikasi
-  public/            # File statis yang diakses langsung (favicon, robots.txt)
-  index.html         # HTML entry point (dikelola Vite)
-  vite.config.ts     # Konfigurasi Vite
-  tailwind.config.ts # Konfigurasi Tailwind CSS
+    components/      # Komponen React (.tsx): Navbar, Hero, Community, Testimonials, JoinCta, Footer
+    pages/           # Halaman Astro (.astro). index.astro = landing page
+    config.ts        # Re-export config.json sebagai modul TypeScript
+    index.css        # Tailwind v4 + tema warna (@theme)
+    env.d.ts         # Tipe ambient Astro
+  config.json        # Konten website (judul, deskripsi, navbar, footer, social, community)
+  astro.config.mjs   # Konfigurasi Astro + integrasi React & Tailwind
   tsconfig.json      # Konfigurasi TypeScript
   package.json
 ```
 
-**Aturan penempatan file:**
+**Aturan penempatan file (saat ini):**
 
-- Komponen UI reusable → `src/components/`
-- Komponen halaman → `src/pages/`
-- Logika per fitur → `src/features/`
-- Custom hooks → `src/hooks/`
-- Zustand stores → `src/stores/`
-- Fungsi Axios / API call → `src/services/`
-- Helper & utilitas → `src/utils/`
-- TypeScript types & interfaces → `src/types/`
-- Jangan buat folder baru di luar struktur di atas tanpa konfirmasi terlebih dahulu
+- Komponen UI → `src/components/` (PascalCase, named export)
+- Halaman → `src/pages/` (`.astro`)
+- Konten yang bisa dikonfigurasi → `config.json` (jangan hardcode di komponen jika cocok masuk config)
+- Style global / tema → `src/index.css`
+
+Folder seperti `features/`, `hooks/`, `stores/`, `services/`, `utils/`, `types/`, dan `assets/`
+**belum ada** — buat hanya saat benar-benar dibutuhkan, mengikuti konvensi penamaan di bawah.
 
 ---
 
