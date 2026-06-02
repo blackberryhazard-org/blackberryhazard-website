@@ -1,5 +1,4 @@
 import { motion } from 'motion/react';
-import React from 'react';
 import { config } from '../config';
 import { Facebook, MessageCircle, Info } from 'lucide-react'; // Using Lucide as fallback icons
 

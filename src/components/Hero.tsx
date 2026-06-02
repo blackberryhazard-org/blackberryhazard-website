@@ -1,5 +1,4 @@
 import { motion } from 'motion/react';
-import React from 'react';
 import { config } from '../config';
 
 export function Hero() {
@@ -44,10 +43,10 @@ export function Hero() {
                 Join Komunitas
               </a>
               <a
-                href="#"
+                href="#testimonials"
                 className="inline-flex items-center justify-center rounded-lg border border-input bg-background px-6 py-3 text-sm font-medium hover:bg-accent hover:text-accent-foreground transition-colors w-full sm:w-auto"
               >
-                Explore Event
+                Baca Testimoni
               </a>
             </div>
             <div className="flex flex-wrap justify-center md:justify-start gap-6 sm:gap-8">
