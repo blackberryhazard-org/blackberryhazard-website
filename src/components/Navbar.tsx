@@ -1,13 +1,10 @@
-import { Menu, X, Terminal, Users, MessageSquare, Code, ChevronRight, ChevronDown, CodeSquare, ArrowLeftToLine, ArrowRightToLine } from 'lucide-react';
+import { Menu, X, Terminal, Users, MessageSquare, Code, CodeSquare, ArrowLeftToLine, ArrowRightToLine } from 'lucide-react';
 import { useState, useEffect } from 'react';
 import { config } from '../config';
 
 export function Navbar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isDesktopCollapsed, setIsDesktopCollapsed] = useState(false);
-  const [openMenus, setOpenMenus] = useState<Record<string, boolean>>({
-    'Navigation': true
-  });
 
   // Simulating active path for a single-page app
   const [activePath, setActivePath] = useState('');
@@ -22,18 +19,6 @@ export function Navbar() {
     return () => window.removeEventListener('hashchange', handleHashChange);
   }, []);
 
-  const toggleMenu = (title: string) => {
-    if (isDesktopCollapsed) {
-      setIsDesktopCollapsed(false);
-      setOpenMenus(prev => ({ ...prev, [title]: true }));
-      return;
-    }
-    setOpenMenus(prev => ({
-      ...prev,
-      [title]: !prev[title]
-    }));
-  };
-
   const toggleDesktopSidebar = () => {
     setIsDesktopCollapsed(!isDesktopCollapsed);
   };
@@ -46,19 +31,14 @@ export function Navbar() {
     }
   };
 
-  const menus = [
-    {
-      title: 'Navigation',
-      icon: Terminal,
-      subItems: [
-        { name: 'Home', href: '#', icon: Code },
-        ...config.navbar.links.map(link => ({
-          name: link.label,
-          href: link.url,
-          icon: getIconForLink(link.label)
-        }))
-      ]
-    }
+  // Flattened menu structure
+  const menuItems = [
+    { name: 'Home', href: '#', icon: Code },
+    ...config.navbar.links.map(link => ({
+      name: link.label,
+      href: link.url,
+      icon: getIconForLink(link.label)
+    }))
   ];
 
   return (
@@ -91,48 +71,29 @@ export function Navbar() {
                 </button>
             </div>
             <nav className="flex-1 px-4 py-6 overflow-y-auto">
-              <div className="space-y-6">
-                {menus.map(menu => {
-                  const isOpen = openMenus[menu.title];
+              <div className="space-y-2">
+                <div className="px-4 mb-2 text-xs font-bold uppercase tracking-wider text-[#bccabb]">
+                  Navigation
+                </div>
+                {menuItems.map((item) => {
+                  const isActive = (activePath === '' && item.href === '#') || activePath === item.href;
+
+                  const linkClasses = `flex items-center gap-3 px-4 py-3 transition-colors ${
+                    isActive
+                      ? 'bg-[#1a120c] text-[#4ade80] border border-[#4ade80] shadow-[0_0_5px_rgba(74,222,128,0.2)]'
+                      : 'text-[#dde5da] active:bg-[#1a120c] hover:text-[#4ade80]'
+                  }`;
+
                   return (
-                    <div key={menu.title}>
-                      <button
-                        onClick={() => toggleMenu(menu.title)}
-                        className="w-full px-4 mb-3 flex items-center justify-between text-[#bccabb] hover:text-white transition-colors"
-                      >
-                        <div className="flex items-center gap-2 text-sm font-bold uppercase tracking-wider">
-                          <menu.icon className="w-5 h-5" />
-                          {menu.title}
-                        </div>
-                        {isOpen ? <ChevronDown className="w-5 h-5" /> : <ChevronRight className="w-5 h-5" />}
-                      </button>
-
-                      {isOpen && (
-                        <div className="space-y-2 pl-4 border-l border-[rgba(255,255,255,0.05)] ml-6">
-                          {menu.subItems.map((item) => {
-                            const isActive = (activePath === '' && item.href === '#') || activePath === item.href;
-
-                            const linkClasses = `flex items-center gap-3 px-4 py-3 transition-colors ${
-                              isActive
-                                ? 'bg-[#1a120c] text-[#4ade80] border border-[#4ade80] shadow-[0_0_5px_rgba(74,222,128,0.2)]'
-                                : 'text-[#dde5da] active:bg-[#1a120c] hover:text-[#4ade80]'
-                            }`;
-
-                            return (
-                              <a
-                                key={item.name}
-                                href={item.href}
-                                onClick={() => setIsMenuOpen(false)}
-                                className={linkClasses}
-                              >
-                                <item.icon className={`w-5 h-5 ${isActive ? 'text-[#4ade80]' : ''}`} />
-                                <span className="font-medium text-base">{item.name}</span>
-                              </a>
-                            );
-                          })}
-                        </div>
-                      )}
-                    </div>
+                    <a
+                      key={item.name}
+                      href={item.href}
+                      onClick={() => setIsMenuOpen(false)}
+                      className={linkClasses}
+                    >
+                      <item.icon className={`w-5 h-5 ${isActive ? 'text-[#4ade80]' : ''}`} />
+                      <span className="font-medium text-base">{item.name}</span>
+                    </a>
                   );
                 })}
               </div>
@@ -173,74 +134,38 @@ export function Navbar() {
         </div>
 
         <nav className="flex-1 px-4 mt-2 overflow-y-auto custom-scrollbar overflow-x-hidden">
-          <div className="space-y-6">
-            {menus.map(menu => {
-              const isOpen = openMenus[menu.title] && !isDesktopCollapsed;
+          <div className="space-y-2">
+            {!isDesktopCollapsed && (
+              <div className="px-3 mb-4 text-xs font-bold uppercase tracking-wider text-[#bccabb]">
+                Navigation
+              </div>
+            )}
+
+            {menuItems.map((item) => {
+              const isActive = (activePath === '' && item.href === '#') || activePath === item.href;
+
+              const linkClasses = isDesktopCollapsed
+                ? `flex items-center justify-center p-2 mx-auto transition-colors text-sm w-10 h-10 ${
+                    isActive
+                      ? 'bg-[#1a120c] text-[#4ade80] border border-[#4ade80] shadow-[0_0_5px_rgba(74,222,128,0.2)]'
+                      : 'text-[#dde5da] hover:text-[#4ade80] hover:bg-[#1a120c]'
+                  }`
+                : `flex items-center gap-3 px-3 py-2 transition-colors text-sm overflow-hidden ${
+                    isActive
+                      ? 'bg-[#1a120c] text-[#4ade80] border border-[#4ade80] shadow-[0_0_5px_rgba(74,222,128,0.2)]'
+                      : 'text-[#dde5da] hover:text-[#4ade80] hover:bg-[#1a120c]'
+                  }`;
+
               return (
-                <div key={menu.title}>
-                  <button
-                    onClick={() => toggleMenu(menu.title)}
-                    className={`w-full px-3 mb-2 flex items-center text-[#bccabb] hover:text-white transition-colors ${isDesktopCollapsed ? 'justify-center' : 'justify-between'}`}
-                    title={isDesktopCollapsed ? menu.title : ''}
-                  >
-                    <div className="flex items-center gap-2 text-xs font-bold uppercase tracking-wider overflow-hidden">
-                      <menu.icon className="w-5 h-5 flex-shrink-0" />
-                      {!isDesktopCollapsed && <span className="truncate">{menu.title}</span>}
-                    </div>
-                    {!isDesktopCollapsed && (isOpen ? <ChevronDown className="w-4 h-4 flex-shrink-0" /> : <ChevronRight className="w-4 h-4 flex-shrink-0" />)}
-                  </button>
-
-                  {isOpen && !isDesktopCollapsed && (
-                    <div className="space-y-1 pl-3 border-l border-[rgba(255,255,255,0.05)] ml-5">
-                      {menu.subItems.map((item) => {
-                        const isActive = (activePath === '' && item.href === '#') || activePath === item.href;
-
-                        const linkClasses = `flex items-center gap-3 px-3 py-2 transition-colors text-sm overflow-hidden ${
-                          isActive
-                            ? 'bg-[#1a120c] text-[#4ade80] border border-[#4ade80] shadow-[0_0_5px_rgba(74,222,128,0.2)]'
-                            : 'text-[#dde5da] hover:text-[#4ade80] hover:bg-[#1a120c]'
-                        }`;
-
-                        return (
-                          <a
-                            key={item.name}
-                            href={item.href}
-                            className={linkClasses}
-                          >
-                            <item.icon className={`w-4 h-4 flex-shrink-0 ${isActive ? 'text-[#4ade80]' : ''}`} />
-                            <span className="font-medium truncate">{item.name}</span>
-                          </a>
-                        );
-                      })}
-                    </div>
-                  )}
-
-                  {/* Icon only links for collapsed state */}
-                   {isDesktopCollapsed && (
-                    <div className="space-y-2 mt-2">
-                      {menu.subItems.map((item) => {
-                        const isActive = (activePath === '' && item.href === '#') || activePath === item.href;
-
-                        const linkClasses = `flex items-center justify-center p-2 mx-auto transition-colors text-sm w-10 h-10 ${
-                          isActive
-                            ? 'bg-[#1a120c] text-[#4ade80] border border-[#4ade80] shadow-[0_0_5px_rgba(74,222,128,0.2)]'
-                            : 'text-[#dde5da] hover:text-[#4ade80] hover:bg-[#1a120c]'
-                        }`;
-
-                        return (
-                          <a
-                            key={item.name}
-                            href={item.href}
-                            className={linkClasses}
-                            title={item.name}
-                          >
-                            <item.icon className={`w-5 h-5 flex-shrink-0 ${isActive ? 'text-[#4ade80]' : ''}`} />
-                          </a>
-                        );
-                      })}
-                    </div>
-                  )}
-                </div>
+                <a
+                  key={item.name}
+                  href={item.href}
+                  className={linkClasses}
+                  title={isDesktopCollapsed ? item.name : ''}
+                >
+                  <item.icon className={`w-5 h-5 flex-shrink-0 ${isActive ? 'text-[#4ade80]' : ''}`} />
+                  {!isDesktopCollapsed && <span className="font-medium truncate">{item.name}</span>}
+                </a>
               );
             })}
           </div>

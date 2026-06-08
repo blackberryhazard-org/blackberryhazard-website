@@ -1,89 +1,83 @@
 import { motion } from 'motion/react';
-import { Terminal } from 'lucide-react';
 
 export function Testimonials() {
   return (
-    <section id="testimonials" className="py-16 md:py-24 bg-[#0e150f] px-4">
-      <div className="container mx-auto max-w-5xl">
-        <div className="flex flex-col items-start md:items-center text-left md:text-center space-y-4 mb-10 md:mb-16">
-          <motion.div
-            initial={{ opacity: 0, scale: 0.95 }}
-            whileInView={{ opacity: 1, scale: 1 }}
-            viewport={{ once: true }}
-            className="inline-flex items-center gap-2 px-3 py-1 bg-[#1a120c] border border-[rgba(255,255,255,0.1)] text-[#4ade80] text-xs md:text-sm font-semibold uppercase tracking-wider"
-          >
-            <Terminal className="w-3 h-3 md:w-4 md:h-4" />
-            <span>Logs</span>
-          </motion.div>
-          <motion.h2
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5, ease: "easeOut" }}
-            className="text-2xl sm:text-3xl md:text-5xl font-bold tracking-tight text-white uppercase"
-          >
-            KATA MEREKA
-          </motion.h2>
-          <motion.p
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5, ease: "easeOut", delay: 0.1 }}
-            className="text-[#bccabb] max-w-2xl text-base md:text-lg"
-          >
-            Cerita dari anggota yang udah nyobain serunya ngoding dan mabar bareng.
-          </motion.p>
-        </div>
-
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6 mb-10 md:mb-12">
-          {/* Testimonial 1 */}
+    <section id="testimonials" className="w-full py-20 md:py-28 bg-muted/50">
+      <div className="container px-4 md:px-6 mx-auto">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.4, ease: "easeOut" }}
+          className="flex flex-col items-center justify-center space-y-4 text-center mb-16"
+        >
+          <h2 className="text-3xl font-semibold tracking-tight md:text-4xl">
+            Apa Kata Mereka Tentang
+            <span className="block mt-2 text-primary-500">Komunitas Kami?</span>
+          </h2>
+        </motion.div>
+        <div className="grid gap-8 md:gap-6 grid-cols-1 md:grid-cols-2 lg:grid-cols-3 mb-16">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.4, ease: "easeOut" }}
-            className="flex flex-col justify-between bg-[#1a120c] p-6 md:p-8 border border-[rgba(255,255,255,0.05)] relative overflow-hidden group hover:border-[#4ade80] transition-colors"
+            className="flex flex-col justify-between rounded-2xl bg-background p-6 shadow-sm border border-border relative overflow-hidden"
           >
-            <div className="absolute top-0 right-0 p-4 opacity-5 group-hover:opacity-10 group-hover:text-[#4ade80] transition-all">
-              <svg className="w-12 h-12 md:w-16 md:h-16" fill="currentColor" viewBox="0 0 24 24">
+            <div className="absolute top-0 right-0 p-4 opacity-5">
+              <svg className="w-12 h-12" fill="currentColor" viewBox="0 0 24 24">
                 <path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h3.983v10h-9.983z" />
               </svg>
             </div>
-            <div className="space-y-4 md:space-y-6 relative z-10">
-              <p className="text-sm md:text-base/relaxed text-[#dde5da]">Asik bgt cuy</p>
-              <div className="flex items-center gap-3 md:gap-4 mt-auto pt-4 md:pt-6 border-t border-[rgba(255,255,255,0.05)]">
-                <div className="h-10 w-10 md:h-12 md:w-12 bg-[#2f372f]">
+            <div className="space-y-4 relative z-10">
+              <div className="flex items-center gap-4">
+                <div className="h-12 w-12 rounded-full overflow-hidden bg-muted">
                   <img
-                    src="https://cdn.discordapp.com/avatars/443657753731858452/d75b8eeb0579e0a05a4687d6d34e6b52.webp?size=160"
-                    alt="Syahdan"
+                    src="https://cdn.discordapp.com/avatars/615809804245762058/2eb3f5022e3ab4b6002f232ce96a798b.webp?size=160"
+                    alt="Rizky"
                     className="h-full w-full object-cover"
                   />
                 </div>
                 <div>
-                  <h3 className="font-bold text-white uppercase tracking-wider text-xs md:text-sm">Syahdan</h3>
-                  <p className="text-[10px] md:text-xs text-[#869486] uppercase tracking-wider">Admin/Owner</p>
+                  <h3 className="font-semibold text-foreground">Rizky</h3>
+                  <p className="text-sm text-muted-foreground">Admin/Owner</p>
                 </div>
               </div>
+              <div className="flex gap-1 text-yellow-400">
+                <svg className="h-4 w-4" fill="currentColor" viewBox="0 0 576 512">
+                  <path d="M316.9 18C311.6 7 300.4 0 288.1 0s-23.4 7-28.8 18L195 150.3 51.4 171.5c-12 1.8-22 10.2-25.7 21.7s-.7 24.2 7.9 32.7L137.8 329 113.2 474.7c-2 12 3 24.2 12.9 31.3s23 8 33.8 2.3l128.3-68.5 128.3 68.5c10.8 5.7 23.9 4.9 33.8-2.3s14.9-19.3 12.9-31.3L438.5 329 542.7 225.9c8.6-8.5 11.7-21.2 7.9-32.7s-13.7-19.9-25.7-21.7L381.2 150.3 316.9 18z"></path>
+                </svg>
+                <svg className="h-4 w-4" fill="currentColor" viewBox="0 0 576 512">
+                  <path d="M316.9 18C311.6 7 300.4 0 288.1 0s-23.4 7-28.8 18L195 150.3 51.4 171.5c-12 1.8-22 10.2-25.7 21.7s-.7 24.2 7.9 32.7L137.8 329 113.2 474.7c-2 12 3 24.2 12.9 31.3s23 8 33.8 2.3l128.3-68.5 128.3 68.5c10.8 5.7 23.9 4.9 33.8-2.3s14.9-19.3 12.9-31.3L438.5 329 542.7 225.9c8.6-8.5 11.7-21.2 7.9-32.7s-13.7-19.9-25.7-21.7L381.2 150.3 316.9 18z"></path>
+                </svg>
+                <svg className="h-4 w-4" fill="currentColor" viewBox="0 0 576 512">
+                  <path d="M316.9 18C311.6 7 300.4 0 288.1 0s-23.4 7-28.8 18L195 150.3 51.4 171.5c-12 1.8-22 10.2-25.7 21.7s-.7 24.2 7.9 32.7L137.8 329 113.2 474.7c-2 12 3 24.2 12.9 31.3s23 8 33.8 2.3l128.3-68.5 128.3 68.5c10.8 5.7 23.9 4.9 33.8-2.3s14.9-19.3 12.9-31.3L438.5 329 542.7 225.9c8.6-8.5 11.7-21.2 7.9-32.7s-13.7-19.9-25.7-21.7L381.2 150.3 316.9 18z"></path>
+                </svg>
+                <svg className="h-4 w-4" fill="currentColor" viewBox="0 0 576 512">
+                  <path d="M316.9 18C311.6 7 300.4 0 288.1 0s-23.4 7-28.8 18L195 150.3 51.4 171.5c-12 1.8-22 10.2-25.7 21.7s-.7 24.2 7.9 32.7L137.8 329 113.2 474.7c-2 12 3 24.2 12.9 31.3s23 8 33.8 2.3l128.3-68.5 128.3 68.5c10.8 5.7 23.9 4.9 33.8-2.3s14.9-19.3 12.9-31.3L438.5 329 542.7 225.9c8.6-8.5 11.7-21.2 7.9-32.7s-13.7-19.9-25.7-21.7L381.2 150.3 316.9 18z"></path>
+                </svg>
+                <svg className="h-4 w-4" fill="currentColor" viewBox="0 0 576 512">
+                  <path d="M316.9 18C311.6 7 300.4 0 288.1 0s-23.4 7-28.8 18L195 150.3 51.4 171.5c-12 1.8-22 10.2-25.7 21.7s-.7 24.2 7.9 32.7L137.8 329 113.2 474.7c-2 12 3 24.2 12.9 31.3s23 8 33.8 2.3l128.3-68.5 128.3 68.5c10.8 5.7 23.9 4.9 33.8-2.3s14.9-19.3 12.9-31.3L438.5 329 542.7 225.9c8.6-8.5 11.7-21.2 7.9-32.7s-13.7-19.9-25.7-21.7L381.2 150.3 316.9 18z"></path>
+                </svg>
+              </div>
+              <p className="text-sm/relaxed text-foreground">Asik bgt cuy</p>
             </div>
           </motion.div>
-
-          {/* Testimonial 2 */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.4, ease: "easeOut", delay: 0.1 }}
-            className="flex flex-col justify-between bg-[#1a120c] p-6 md:p-8 border border-[rgba(255,255,255,0.05)] relative overflow-hidden group hover:border-[#4ade80] transition-colors"
+            className="flex flex-col justify-between rounded-2xl bg-background p-6 shadow-sm border border-border relative overflow-hidden"
           >
-             <div className="absolute top-0 right-0 p-4 opacity-5 group-hover:opacity-10 group-hover:text-[#4ade80] transition-all">
-              <svg className="w-12 h-12 md:w-16 md:h-16" fill="currentColor" viewBox="0 0 24 24">
+            <div className="absolute top-0 right-0 p-4 opacity-5">
+              <svg className="w-12 h-12" fill="currentColor" viewBox="0 0 24 24">
                 <path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h3.983v10h-9.983z" />
               </svg>
             </div>
-            <div className="space-y-4 md:space-y-6 relative z-10">
-              <p className="text-sm md:text-base/relaxed text-[#dde5da]">Sangat rekomen ini komunitas, apalagi kalau kalian wibu.</p>
-              <div className="flex items-center gap-3 md:gap-4 mt-auto pt-4 md:pt-6 border-t border-[rgba(255,255,255,0.05)]">
-                <div className="h-10 w-10 md:h-12 md:w-12 bg-[#2f372f]">
+            <div className="space-y-4 relative z-10">
+              <div className="flex items-center gap-4">
+                <div className="h-12 w-12 rounded-full overflow-hidden bg-muted">
                   <img
                     src="https://cdn.discordapp.com/avatars/443657753731858452/d75b8eeb0579e0a05a4687d6d34e6b52.webp?size=160"
                     alt="Syahdan"
@@ -91,45 +85,77 @@ export function Testimonials() {
                   />
                 </div>
                 <div>
-                  <h3 className="font-bold text-white uppercase tracking-wider text-xs md:text-sm">Syahdan</h3>
-                  <p className="text-[10px] md:text-xs text-[#869486] uppercase tracking-wider">Admin/Owner</p>
+                  <h3 className="font-semibold text-foreground">Syahdan</h3>
+                  <p className="text-sm text-muted-foreground">Admin/Owner</p>
                 </div>
               </div>
+              <div className="flex gap-1 text-yellow-400">
+                <svg className="h-4 w-4" fill="currentColor" viewBox="0 0 576 512">
+                  <path d="M316.9 18C311.6 7 300.4 0 288.1 0s-23.4 7-28.8 18L195 150.3 51.4 171.5c-12 1.8-22 10.2-25.7 21.7s-.7 24.2 7.9 32.7L137.8 329 113.2 474.7c-2 12 3 24.2 12.9 31.3s23 8 33.8 2.3l128.3-68.5 128.3 68.5c10.8 5.7 23.9 4.9 33.8-2.3s14.9-19.3 12.9-31.3L438.5 329 542.7 225.9c8.6-8.5 11.7-21.2 7.9-32.7s-13.7-19.9-25.7-21.7L381.2 150.3 316.9 18z"></path>
+                </svg>
+                <svg className="h-4 w-4" fill="currentColor" viewBox="0 0 576 512">
+                  <path d="M316.9 18C311.6 7 300.4 0 288.1 0s-23.4 7-28.8 18L195 150.3 51.4 171.5c-12 1.8-22 10.2-25.7 21.7s-.7 24.2 7.9 32.7L137.8 329 113.2 474.7c-2 12 3 24.2 12.9 31.3s23 8 33.8 2.3l128.3-68.5 128.3 68.5c10.8 5.7 23.9 4.9 33.8-2.3s14.9-19.3 12.9-31.3L438.5 329 542.7 225.9c8.6-8.5 11.7-21.2 7.9-32.7s-13.7-19.9-25.7-21.7L381.2 150.3 316.9 18z"></path>
+                </svg>
+                <svg className="h-4 w-4" fill="currentColor" viewBox="0 0 576 512">
+                  <path d="M316.9 18C311.6 7 300.4 0 288.1 0s-23.4 7-28.8 18L195 150.3 51.4 171.5c-12 1.8-22 10.2-25.7 21.7s-.7 24.2 7.9 32.7L137.8 329 113.2 474.7c-2 12 3 24.2 12.9 31.3s23 8 33.8 2.3l128.3-68.5 128.3 68.5c10.8 5.7 23.9 4.9 33.8-2.3s14.9-19.3 12.9-31.3L438.5 329 542.7 225.9c8.6-8.5 11.7-21.2 7.9-32.7s-13.7-19.9-25.7-21.7L381.2 150.3 316.9 18z"></path>
+                </svg>
+                <svg className="h-4 w-4" fill="currentColor" viewBox="0 0 576 512">
+                  <path d="M316.9 18C311.6 7 300.4 0 288.1 0s-23.4 7-28.8 18L195 150.3 51.4 171.5c-12 1.8-22 10.2-25.7 21.7s-.7 24.2 7.9 32.7L137.8 329 113.2 474.7c-2 12 3 24.2 12.9 31.3s23 8 33.8 2.3l128.3-68.5 128.3 68.5c10.8 5.7 23.9 4.9 33.8-2.3s14.9-19.3 12.9-31.3L438.5 329 542.7 225.9c8.6-8.5 11.7-21.2 7.9-32.7s-13.7-19.9-25.7-21.7L381.2 150.3 316.9 18z"></path>
+                </svg>
+                <svg className="h-4 w-4" fill="currentColor" viewBox="0 0 576 512">
+                  <path d="M316.9 18C311.6 7 300.4 0 288.1 0s-23.4 7-28.8 18L195 150.3 51.4 171.5c-12 1.8-22 10.2-25.7 21.7s-.7 24.2 7.9 32.7L137.8 329 113.2 474.7c-2 12 3 24.2 12.9 31.3s23 8 33.8 2.3l128.3-68.5 128.3 68.5c10.8 5.7 23.9 4.9 33.8-2.3s14.9-19.3 12.9-31.3L438.5 329 542.7 225.9c8.6-8.5 11.7-21.2 7.9-32.7s-13.7-19.9-25.7-21.7L381.2 150.3 316.9 18z"></path>
+                </svg>
+              </div>
+              <p className="text-sm/relaxed text-foreground">Sangat rekomen ini komunitas, apalagi kalau kalian wibu.</p>
             </div>
           </motion.div>
-
-          {/* Testimonial 3 */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.4, ease: "easeOut", delay: 0.2 }}
-            className="flex flex-col justify-between bg-[#1a120c] p-6 md:p-8 border border-[rgba(255,255,255,0.05)] relative overflow-hidden group hover:border-[#4ade80] transition-colors"
+            className="flex flex-col justify-between rounded-2xl bg-background p-6 shadow-sm border border-border relative overflow-hidden"
           >
-             <div className="absolute top-0 right-0 p-4 opacity-5 group-hover:opacity-10 group-hover:text-[#4ade80] transition-all">
-              <svg className="w-12 h-12 md:w-16 md:h-16" fill="currentColor" viewBox="0 0 24 24">
+            <div className="absolute top-0 right-0 p-4 opacity-5">
+              <svg className="w-12 h-12" fill="currentColor" viewBox="0 0 24 24">
                 <path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h3.983v10h-9.983z" />
               </svg>
             </div>
-            <div className="space-y-4 md:space-y-6 relative z-10">
-              <p className="text-sm md:text-base/relaxed text-[#dde5da]">Great platform!</p>
-              <div className="flex items-center gap-3 md:gap-4 mt-auto pt-4 md:pt-6 border-t border-[rgba(255,255,255,0.05)]">
-                <div className="h-10 w-10 md:h-12 md:w-12 bg-[rgba(74,222,128,0.1)] flex items-center justify-center text-lg md:text-xl font-bold text-[#4ade80] border border-[rgba(74,222,128,0.2)]">
+            <div className="space-y-4 relative z-10">
+              <div className="flex items-center gap-4">
+                <div className="h-12 w-12 rounded-full overflow-hidden bg-muted flex items-center justify-center text-xl font-bold bg-primary/10 text-primary">
                   I
                 </div>
                 <div>
-                  <h3 className="font-bold text-white uppercase tracking-wider text-xs md:text-sm">Isam</h3>
-                  <p className="text-[10px] md:text-xs text-[#869486] uppercase tracking-wider">Software Engineer</p>
+                  <h3 className="font-semibold text-foreground">Isam</h3>
+                  <p className="text-sm text-muted-foreground">Software Engineer</p>
                 </div>
               </div>
+              <div className="flex gap-1 text-yellow-400">
+                <svg className="h-4 w-4" fill="currentColor" viewBox="0 0 576 512">
+                  <path d="M316.9 18C311.6 7 300.4 0 288.1 0s-23.4 7-28.8 18L195 150.3 51.4 171.5c-12 1.8-22 10.2-25.7 21.7s-.7 24.2 7.9 32.7L137.8 329 113.2 474.7c-2 12 3 24.2 12.9 31.3s23 8 33.8 2.3l128.3-68.5 128.3 68.5c10.8 5.7 23.9 4.9 33.8-2.3s14.9-19.3 12.9-31.3L438.5 329 542.7 225.9c8.6-8.5 11.7-21.2 7.9-32.7s-13.7-19.9-25.7-21.7L381.2 150.3 316.9 18z"></path>
+                </svg>
+                <svg className="h-4 w-4" fill="currentColor" viewBox="0 0 576 512">
+                  <path d="M316.9 18C311.6 7 300.4 0 288.1 0s-23.4 7-28.8 18L195 150.3 51.4 171.5c-12 1.8-22 10.2-25.7 21.7s-.7 24.2 7.9 32.7L137.8 329 113.2 474.7c-2 12 3 24.2 12.9 31.3s23 8 33.8 2.3l128.3-68.5 128.3 68.5c10.8 5.7 23.9 4.9 33.8-2.3s14.9-19.3 12.9-31.3L438.5 329 542.7 225.9c8.6-8.5 11.7-21.2 7.9-32.7s-13.7-19.9-25.7-21.7L381.2 150.3 316.9 18z"></path>
+                </svg>
+                <svg className="h-4 w-4" fill="currentColor" viewBox="0 0 576 512">
+                  <path d="M316.9 18C311.6 7 300.4 0 288.1 0s-23.4 7-28.8 18L195 150.3 51.4 171.5c-12 1.8-22 10.2-25.7 21.7s-.7 24.2 7.9 32.7L137.8 329 113.2 474.7c-2 12 3 24.2 12.9 31.3s23 8 33.8 2.3l128.3-68.5 128.3 68.5c10.8 5.7 23.9 4.9 33.8-2.3s14.9-19.3 12.9-31.3L438.5 329 542.7 225.9c8.6-8.5 11.7-21.2 7.9-32.7s-13.7-19.9-25.7-21.7L381.2 150.3 316.9 18z"></path>
+                </svg>
+                <svg className="h-4 w-4" fill="currentColor" viewBox="0 0 576 512">
+                  <path d="M316.9 18C311.6 7 300.4 0 288.1 0s-23.4 7-28.8 18L195 150.3 51.4 171.5c-12 1.8-22 10.2-25.7 21.7s-.7 24.2 7.9 32.7L137.8 329 113.2 474.7c-2 12 3 24.2 12.9 31.3s23 8 33.8 2.3l128.3-68.5 128.3 68.5c10.8 5.7 23.9 4.9 33.8-2.3s14.9-19.3 12.9-31.3L438.5 329 542.7 225.9c8.6-8.5 11.7-21.2 7.9-32.7s-13.7-19.9-25.7-21.7L381.2 150.3 316.9 18z"></path>
+                </svg>
+                <svg className="h-4 w-4 text-muted" fill="currentColor" viewBox="0 0 576 512">
+                  <path d="M288 376.4l.1-.1 26.4 14.1 85.2 45.5-16.5-97.6-4.5-26.6 19.6-18.9 71-68.4-97.9-14.2-26.8-3.9-12-24.3L288 93.6V376.4zm-149.1 98.3c-2 12 3 24.2 12.9 31.3s23 8 33.8 2.3l128.3-68.5 128.3 68.5c10.8 5.7 23.9 4.9 33.8-2.3s14.9-19.3 12.9-31.3L438.5 329 542.7 225.9c8.6-8.5 11.7-21.2 7.9-32.7s-13.7-19.9-25.7-21.7L381.2 150.3 316.9 18C311.6 7 300.4 0 288.1 0s-23.4 7-28.8 18L195 150.3 51.4 171.5c-12 1.8-22 10.2-25.7 21.7s-.7 24.2 7.9 32.7L137.8 329 113.2 474.7z"></path>
+                </svg>
+              </div>
+              <p className="text-sm/relaxed text-foreground">Great platform!</p>
             </div>
           </motion.div>
         </div>
-
-        <div className="flex justify-start md:justify-center">
+        <div className="flex justify-center">
           <a
             href="#community"
-            className="btn-secondary px-6 md:px-8 py-3 md:py-4 font-semibold uppercase tracking-wider text-xs md:text-sm w-full md:w-auto text-center"
+            className="inline-flex items-center justify-center rounded-lg bg-primary text-primary-foreground px-6 py-3 text-sm font-medium hover:bg-primary/90 transition-colors"
           >
             Tulis Testimonimu
           </a>
