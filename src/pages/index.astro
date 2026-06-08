@@ -30,7 +30,7 @@ const favicon =
     <meta name="description" content={config.description} />
     <meta name="keywords" content={config.keywords.join(', ')} />
     <meta name="author" content={config.author} />
-    <meta name="theme-color" content="#000000" />
+    <meta name="theme-color" content="#0e150f" />
 
     <!-- Open Graph -->
     <meta property="og:type" content="website" />
@@ -48,15 +48,17 @@ const favicon =
     <meta name="twitter:image" content={ogImage} />
   </head>
   <body>
-    <div class="flex min-h-screen flex-col font-sans text-foreground bg-background">
+    <div class="flex h-screen w-full font-sans text-foreground bg-background overflow-hidden">
       <Navbar client:load />
-      <main class="flex-1">
-        <Hero client:load />
-        <Community client:load />
-        <Testimonials client:load />
-        <JoinCta client:load />
-      </main>
-      <Footer client:idle />
+      <div class="flex-1 flex flex-col overflow-y-auto custom-scrollbar">
+        <main class="flex-1">
+          <Hero client:load />
+          <Community client:load />
+          <Testimonials client:load />
+          <JoinCta client:load />
+        </main>
+        <Footer client:idle />
+      </div>
     </div>
   </body>
 </html>

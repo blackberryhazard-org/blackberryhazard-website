@@ -1,35 +1,68 @@
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700&display=swap');
 @import "tailwindcss";
 
 @theme {
-  --font-sans: "Poppins", ui-sans-serif, system-ui, sans-serif;
+  --font-sans: "Outfit", ui-sans-serif, system-ui, sans-serif;
   
-  /* Background & Foreground (Dark theme by default) */
-  --color-background: #000000;
-  --color-foreground: #FFFFFF; /* Ultra White */
+  /* Digital Verdance Palette */
+  --color-background: #0e150f;
+  --color-foreground: #dde5da;
   
-  /* Muted elements using Silver Ray */
-  --color-muted: #1f1f22;
-  --color-muted-foreground: #C0C0C0; /* Silver Ray */
+  --color-surface: #0e150f;
+  --color-surface-dim: #0e150f;
+  --color-surface-bright: #333b34;
+  --color-surface-container-lowest: #09100a;
+  --color-surface-container-low: #161d17;
+  --color-surface-container: #1a211b;
+  --color-surface-container-high: #242c25;
+  --color-surface-container-highest: #2f372f;
   
-  /* Primary: Ultraman Red */
-  --color-primary: #FF0000; /* Ultraman Red */
-  --color-primary-foreground: #FFFFFF; /* Ultra White */
-  --color-primary-500: #FF0000; /* Ultraman Red */
-  --color-primary-600: #cc0000; 
+  --color-on-surface: #dde5da;
+  --color-on-surface-variant: #bccabb;
+  --color-inverse-surface: #dde5da;
+  --color-inverse-on-surface: #2b322b;
   
-  /* Borders and Inputs */
-  --color-border: #27272a;
-  --color-input: #27272a;
+  --color-outline: #869486;
+  --color-outline-variant: #3d4a3e;
+  --color-surface-tint: #4de082;
   
-  /* Secondary/Accent: Blazer Blue */
-  --color-accent: #0044FF; /* Blazer Blue */
-  --color-accent-foreground: #FFFFFF; /* Ultra White */
+  --color-primary: #6bfb9a;
+  --color-on-primary: #003919;
+  --color-primary-container: #4ade80;
+  --color-on-primary-container: #005e2d;
+  --color-inverse-primary: #006d36;
+  --color-primary-fixed: #6dfe9c;
+  --color-primary-fixed-dim: #4de082;
+  --color-on-primary-fixed: #00210c;
+  --color-on-primary-fixed-variant: #005227;
   
-  /* Specific colors used in gradients and accents */
-  --color-blue-400: #0044FF; /* Overwrite Tailwind's blue-400 for Blazer Blue in the glowing backgrounds */
-  --color-yellow-300: #FFD700; /* Overwrite Tailwind's yellow-300 for Beam Yellow */
-  --color-green-500: #00FF00; /* Monster Green */
+  --color-secondary: #d4c3b9;
+  --color-on-secondary: #382e27;
+  --color-secondary-container: #50453d;
+  --color-on-secondary-container: #c2b2a8;
+  --color-secondary-fixed: #f1dfd5;
+  --color-secondary-fixed-dim: #d4c3b9;
+  --color-on-secondary-fixed: #221a14;
+  --color-on-secondary-fixed-variant: #50453d;
+
+  --color-tertiary: #ffd9c1;
+  --color-on-tertiary: #4f2500;
+  --color-tertiary-container: #ffb47f;
+  --color-on-tertiary-container: #794418;
+  --color-tertiary-fixed: #ffdcc6;
+  --color-tertiary-fixed-dim: #ffb784;
+  --color-on-tertiary-fixed: #301400;
+  --color-on-tertiary-fixed-variant: #6c3a0f;
+
+  --color-error: #ffb4ab;
+  --color-on-error: #690005;
+  --color-error-container: #93000a;
+  --color-on-error-container: #ffdad6;
+
+  --color-border: #2f372f; /* surface-variant */
+  --color-input: #1a211b; /* surface-container */
+  --color-muted: #161d17; /* surface-container-low */
+  --color-muted-foreground: #bccabb; /* on-surface-variant */
 }
 
 @utility container {
@@ -55,4 +88,59 @@
   to {
     opacity: 1;
   }
+}
+
+/* Custom scrollbar to match the dark aesthetic */
+.custom-scrollbar::-webkit-scrollbar {
+  width: 6px;
+}
+.custom-scrollbar::-webkit-scrollbar-track {
+  background: transparent;
+}
+.custom-scrollbar::-webkit-scrollbar-thumb {
+  background: var(--color-surface-container-high);
+  border-radius: 0;
+}
+.custom-scrollbar::-webkit-scrollbar-thumb:hover {
+  background: var(--color-primary-container);
+}
+
+/* Sharp design resets */
+* {
+  border-radius: 0 !important;
+}
+
+/* Button styles based on design guidelines */
+.btn-primary {
+  background-color: var(--color-primary-container);
+  color: #121212;
+  font-weight: 700;
+  border-radius: 0;
+  transition: all 0.2s ease-in-out;
+}
+.btn-primary:hover {
+  filter: brightness(1.1);
+  box-shadow: 0 0 10px rgba(74, 222, 128, 0.3);
+}
+
+.btn-secondary {
+  background-color: transparent;
+  border: 1px solid var(--color-primary-container);
+  color: var(--color-primary-container);
+  border-radius: 0;
+  transition: all 0.2s ease-in-out;
+}
+.btn-secondary:hover {
+  background-color: rgba(74, 222, 128, 0.1);
+}
+
+.btn-ghost {
+  background-color: transparent;
+  color: #f8fafc;
+  border: none;
+  border-radius: 0;
+  transition: all 0.2s ease-in-out;
+}
+.btn-ghost:hover {
+  background-color: rgba(255, 255, 255, 0.05);
 }
