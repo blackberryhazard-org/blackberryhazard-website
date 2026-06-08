@@ -11,15 +11,15 @@ export function Community() {
   };
 
   return (
-    <section id="community" className="py-24 bg-[#09100a] relative border-y border-[rgba(255,255,255,0.05)]">
-      <div className="container mx-auto px-4 md:px-6">
-        <div className="flex flex-col items-center text-center space-y-4 mb-16">
+    <section id="community" className="py-16 md:py-24 bg-[#09100a] relative border-y border-[rgba(255,255,255,0.05)] px-4">
+      <div className="container mx-auto max-w-5xl">
+        <div className="flex flex-col items-start md:items-center text-left md:text-center space-y-4 mb-10 md:mb-16">
           <motion.h2
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.5, ease: "easeOut" }}
-            className="text-3xl md:text-5xl font-bold tracking-tight text-white uppercase"
+            className="text-2xl sm:text-3xl md:text-5xl font-bold tracking-tight text-white uppercase"
           >
             Pilih Platform
           </motion.h2>
@@ -28,13 +28,13 @@ export function Community() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.5, ease: "easeOut", delay: 0.1 }}
-            className="text-[#bccabb] max-w-2xl text-lg"
+            className="text-[#bccabb] max-w-2xl text-base md:text-lg"
           >
             Kami hadir di berbagai platform. Pilih yang paling nyaman buat kamu untuk mulai berdiskusi.
           </motion.p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6">
           {config.community.map((comm, index) => {
             const Icon = getIcon(comm.name);
             return (
@@ -47,19 +47,19 @@ export function Community() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.5, ease: "easeOut", delay: index * 0.1 }}
-                className="group relative flex flex-col justify-between bg-[#1a120c] p-8 border border-[rgba(255,255,255,0.05)] hover:border-[#4ade80] transition-colors h-full"
+                className="group relative flex flex-col justify-between bg-[#1a120c] p-6 md:p-8 border border-[rgba(255,255,255,0.05)] hover:border-[#4ade80] transition-colors h-full"
               >
-                <div className="flex justify-between items-start mb-8">
+                <div className="flex justify-between items-start mb-6 md:mb-8">
                   <div className="p-3 bg-[#0e150f] border border-[rgba(255,255,255,0.1)] group-hover:border-[#4ade80] group-hover:text-[#4ade80] text-white transition-colors">
-                    <Icon className="w-8 h-8" />
+                    <Icon className="w-6 h-6 md:w-8 md:h-8" />
                   </div>
-                  <ArrowUpRight className="w-6 h-6 text-[#869486] group-hover:text-[#4ade80] transition-colors" />
+                  <ArrowUpRight className="w-5 h-5 md:w-6 md:h-6 text-[#869486] group-hover:text-[#4ade80] transition-colors" />
                 </div>
                 <div>
-                  <h3 className="text-xl font-bold text-white mb-2 uppercase tracking-wide group-hover:text-[#4ade80] transition-colors">
+                  <h3 className="text-lg md:text-xl font-bold text-white mb-2 uppercase tracking-wide group-hover:text-[#4ade80] transition-colors">
                     {comm.name}
                   </h3>
-                  <p className="text-[#bccabb] text-sm">
+                  <p className="text-[#bccabb] text-xs md:text-sm">
                     Join the {comm.name} community.
                   </p>
                 </div>
