@@ -1,12 +1,9 @@
-import { Menu, X, Terminal, Users, MessageSquare, Code, CodeSquare, ArrowLeftToLine, ArrowRightToLine } from 'lucide-react';
+import { Menu, X, Terminal, Users, MessageSquare, Code, CodeSquare } from 'lucide-react';
 import { useState, useEffect } from 'react';
 import { config } from '../config';
 
 export function Navbar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const [isDesktopCollapsed, setIsDesktopCollapsed] = useState(false);
-
-  // Simulating active path for a single-page app
   const [activePath, setActivePath] = useState('');
 
   useEffect(() => {
@@ -14,14 +11,20 @@ export function Navbar() {
       setActivePath(window.location.hash);
     };
     window.addEventListener('hashchange', handleHashChange);
-    // Initial check
     handleHashChange();
-    return () => window.removeEventListener('hashchange', handleHashChange);
-  }, []);
 
-  const toggleDesktopSidebar = () => {
-    setIsDesktopCollapsed(!isDesktopCollapsed);
-  };
+    // Prevent scrolling when mobile menu is open
+    if (isMenuOpen) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = '';
+    }
+
+    return () => {
+      window.removeEventListener('hashchange', handleHashChange);
+      document.body.style.overflow = '';
+    };
+  }, [isMenuOpen]);
 
   const getIconForLink = (label: string) => {
     switch (label.toLowerCase()) {
@@ -31,7 +34,6 @@ export function Navbar() {
     }
   };
 
-  // Flattened menu structure
   const menuItems = [
     { name: 'Home', href: '#', icon: Code },
     ...config.navbar.links.map(link => ({
@@ -43,151 +45,102 @@ export function Navbar() {
 
   return (
     <>
-      {/* Mobile Topbar & Full-Screen Menu */}
-      <div className="md:hidden flex-shrink-0 z-40">
-        <header className="h-16 border-b border-[rgba(255,255,255,0.05)] bg-[#121212] flex items-center justify-between px-4 sticky top-0">
-           <a href="/" className="flex items-center gap-2 group">
-            <div className="w-7 h-7 bg-[#4ade80] flex items-center justify-center shadow-[0_0_10px_rgba(74,222,128,0.3)]">
-              <CodeSquare className="w-4 h-4 text-[#121212]" />
-            </div>
-            <span className="text-lg font-bold tracking-tight text-white group-hover:text-[#4ade80] transition-colors uppercase tracking-[0.05em]">{config.title}</span>
-          </a>
-          <button onClick={() => setIsMenuOpen(true)} className="p-2 text-[#dde5da] hover:text-white">
-             <Menu className="w-6 h-6" />
-          </button>
-        </header>
-
-        {isMenuOpen && (
-          <div className="fixed inset-0 bg-[#121212] z-50 flex flex-col">
-            <div className="h-16 border-b border-[rgba(255,255,255,0.05)] flex items-center justify-between px-4">
-               <a href="/" onClick={() => setIsMenuOpen(false)} className="flex items-center gap-2">
-                  <div className="w-7 h-7 bg-[#4ade80] flex items-center justify-center shadow-[0_0_10px_rgba(74,222,128,0.3)]">
-                    <CodeSquare className="w-4 h-4 text-[#121212]" />
-                  </div>
-                  <span className="text-lg font-bold text-white uppercase tracking-[0.05em]">{config.title}</span>
-                </a>
-                <button onClick={() => setIsMenuOpen(false)} className="p-2 text-[#dde5da] hover:text-white">
-                  <X className="w-6 h-6" />
-                </button>
-            </div>
-            <nav className="flex-1 px-4 py-6 overflow-y-auto">
-              <div className="space-y-2">
-                <div className="px-4 mb-2 text-xs font-bold uppercase tracking-wider text-[#bccabb]">
-                  Navigation
-                </div>
-                {menuItems.map((item) => {
-                  const isActive = (activePath === '' && item.href === '#') || activePath === item.href;
-
-                  const linkClasses = `flex items-center gap-3 px-4 py-3 transition-colors ${
-                    isActive
-                      ? 'bg-[#1a120c] text-[#4ade80] border border-[#4ade80] shadow-[0_0_5px_rgba(74,222,128,0.2)]'
-                      : 'text-[#dde5da] active:bg-[#1a120c] hover:text-[#4ade80]'
-                  }`;
-
-                  return (
-                    <a
-                      key={item.name}
-                      href={item.href}
-                      onClick={() => setIsMenuOpen(false)}
-                      className={linkClasses}
-                    >
-                      <item.icon className={`w-5 h-5 ${isActive ? 'text-[#4ade80]' : ''}`} />
-                      <span className="font-medium text-base">{item.name}</span>
-                    </a>
-                  );
-                })}
-              </div>
-            </nav>
-
-            <div className="p-6 border-t border-[rgba(255,255,255,0.05)]">
-               <a
-                  href="#community"
-                  onClick={() => setIsMenuOpen(false)}
-                  className="flex items-center justify-center gap-2 w-full btn-primary py-4 text-base uppercase tracking-wider"
-                >
-                  <Users className="w-5 h-5" />
-                  Join Server
-                </a>
-            </div>
+      {/* Top Navigation Bar */}
+      <header className="sticky top-0 z-40 w-full bg-[#0e150f]/90 backdrop-blur-md border-b border-[rgba(255,255,255,0.05)] px-4 md:px-8 py-4 flex justify-between items-center">
+        <a href="/" className="flex items-center gap-2 group">
+          <div className="w-8 h-8 bg-[#4ade80] flex items-center justify-center shadow-[0_0_10px_rgba(74,222,128,0.3)] transition-transform group-hover:scale-105">
+            <CodeSquare className="w-4 h-4 text-[#121212]" />
           </div>
-        )}
-      </div>
+          <span className="font-bold text-xl tracking-tight text-white group-hover:text-[#4ade80] transition-colors uppercase tracking-[0.05em]">{config.title}</span>
+        </a>
 
-      {/* Desktop Sidebar */}
-      <aside className={`h-screen border-r border-[rgba(255,255,255,0.05)] bg-[#121212] flex-shrink-0 hidden md:flex flex-col transition-all duration-300 ease-in-out ${isDesktopCollapsed ? 'w-20' : 'w-64'}`}>
-        <div className={`p-6 flex items-center justify-between`}>
-          {!isDesktopCollapsed && (
-            <a href="/" className="flex items-center gap-2 group overflow-hidden">
-              <div className="w-8 h-8 flex-shrink-0 bg-[#4ade80] flex items-center justify-center group-hover:brightness-110 transition-all shadow-[0_0_10px_rgba(74,222,128,0.3)]">
-                <CodeSquare className="w-5 h-5 text-[#121212]" />
-              </div>
-              <span className="text-xl font-bold tracking-tight text-white group-hover:text-[#4ade80] transition-colors uppercase tracking-[0.05em] truncate">BBHZR</span>
-            </a>
-          )}
-          {isDesktopCollapsed && (
-             <a href="/" className="flex items-center gap-2 group mx-auto">
-              <div className="w-8 h-8 flex-shrink-0 bg-[#4ade80] flex items-center justify-center group-hover:brightness-110 transition-all shadow-[0_0_10px_rgba(74,222,128,0.3)]">
-                <CodeSquare className="w-5 h-5 text-[#121212]" />
-              </div>
-            </a>
-          )}
-        </div>
-
-        <nav className="flex-1 px-4 mt-2 overflow-y-auto custom-scrollbar overflow-x-hidden">
-          <div className="space-y-2">
-            {!isDesktopCollapsed && (
-              <div className="px-3 mb-4 text-xs font-bold uppercase tracking-wider text-[#bccabb]">
-                Navigation
-              </div>
-            )}
-
-            {menuItems.map((item) => {
-              const isActive = (activePath === '' && item.href === '#') || activePath === item.href;
-
-              const linkClasses = isDesktopCollapsed
-                ? `flex items-center justify-center p-2 mx-auto transition-colors text-sm w-10 h-10 ${
-                    isActive
-                      ? 'bg-[#1a120c] text-[#4ade80] border border-[#4ade80] shadow-[0_0_5px_rgba(74,222,128,0.2)]'
-                      : 'text-[#dde5da] hover:text-[#4ade80] hover:bg-[#1a120c]'
-                  }`
-                : `flex items-center gap-3 px-3 py-2 transition-colors text-sm overflow-hidden ${
-                    isActive
-                      ? 'bg-[#1a120c] text-[#4ade80] border border-[#4ade80] shadow-[0_0_5px_rgba(74,222,128,0.2)]'
-                      : 'text-[#dde5da] hover:text-[#4ade80] hover:bg-[#1a120c]'
-                  }`;
-
-              return (
-                <a
-                  key={item.name}
-                  href={item.href}
-                  className={linkClasses}
-                  title={isDesktopCollapsed ? item.name : ''}
-                >
-                  <item.icon className={`w-5 h-5 flex-shrink-0 ${isActive ? 'text-[#4ade80]' : ''}`} />
-                  {!isDesktopCollapsed && <span className="font-medium truncate">{item.name}</span>}
-                </a>
-              );
-            })}
-          </div>
+        {/* Desktop Nav */}
+        <nav className="hidden md:flex items-center gap-8 font-medium text-sm">
+          {menuItems.map((item) => {
+            const isActive = (activePath === '' && item.href === '#') || activePath === item.href;
+            return (
+              <a
+                key={item.name}
+                href={item.href}
+                className={`transition-colors uppercase tracking-wider ${isActive ? 'text-[#4ade80]' : 'text-[#bccabb] hover:text-white'}`}
+              >
+                {item.name}
+              </a>
+            );
+          })}
         </nav>
 
-        <div className="p-4 border-t border-[rgba(255,255,255,0.05)] flex flex-col gap-2">
-          <a
-            href="#community"
-            className={`flex items-center justify-center btn-primary transition-all duration-300 ${isDesktopCollapsed ? 'p-3 w-12 h-12 mx-auto' : 'px-4 py-3 gap-2 w-full text-sm uppercase tracking-wider'}`}
-            title={isDesktopCollapsed ? "Join Server" : ""}
-          >
-            <Users className="w-5 h-5 flex-shrink-0" />
-            {!isDesktopCollapsed && <span>Join Server</span>}
+        <div className="flex items-center gap-4">
+          <a href="#community" className="hidden md:flex items-center justify-center gap-2 btn-primary px-6 py-2 text-sm uppercase tracking-wider">
+            <Users className="w-4 h-4" />
+            Join Server
           </a>
 
+          {/* Mobile Menu Toggle */}
           <button
-            onClick={toggleDesktopSidebar}
-            className="flex items-center justify-center p-2 text-[#869486] hover:text-white hover:bg-[rgba(255,255,255,0.05)] transition-colors mt-2"
-            title={isDesktopCollapsed ? "Expand sidebar" : "Collapse sidebar"}
+            onClick={() => setIsMenuOpen(true)}
+            className="block md:hidden p-2 text-[#dde5da] hover:bg-[#1a120c] transition border border-transparent hover:border-[rgba(255,255,255,0.05)]"
+            aria-label="Buka Menu"
           >
-             {isDesktopCollapsed ? <ArrowRightToLine className="w-5 h-5" /> : <ArrowLeftToLine className="w-5 h-5" />}
+            <Menu className="w-6 h-6" />
           </button>
+        </div>
+      </header>
+
+      {/* Mobile Nav Backdrop */}
+      <div
+        className={`fixed inset-0 bg-[#0e150f]/60 backdrop-blur-sm z-40 md:hidden transition-opacity duration-300 ${isMenuOpen ? 'opacity-100 pointer-events-auto' : 'opacity-0 pointer-events-none'}`}
+        onClick={() => setIsMenuOpen(false)}
+      ></div>
+
+      {/* Mobile Half-Sidebar */}
+      <aside
+        className={`fixed top-0 right-0 bottom-0 w-[70%] sm:w-[50%] bg-[#121212] border-l border-[rgba(255,255,255,0.05)] z-50 transition-transform duration-300 ease-out flex flex-col md:hidden shadow-2xl ${isMenuOpen ? 'translate-x-0' : 'translate-x-full'}`}
+      >
+        <div className="p-4 border-b border-[rgba(255,255,255,0.05)] flex justify-between items-center bg-[#0e150f]">
+          <span className="font-bold text-[#869486] text-xs tracking-wider uppercase">Menu</span>
+          <button
+            onClick={() => setIsMenuOpen(false)}
+            className="p-1.5 text-[#dde5da] hover:text-[#4ade80] hover:bg-[#1a120c] transition border border-transparent hover:border-[rgba(255,255,255,0.05)]"
+            aria-label="Tutup Menu"
+          >
+            <X className="w-5 h-5" />
+          </button>
+        </div>
+
+        <nav className="p-4 flex-1 space-y-2 overflow-y-auto">
+          {menuItems.map((item) => {
+            const isActive = (activePath === '' && item.href === '#') || activePath === item.href;
+
+            const linkClasses = `flex items-center gap-3 px-4 py-3 transition-colors ${
+              isActive
+                ? 'bg-[#1a120c] text-[#4ade80] border border-[#4ade80] shadow-[0_0_5px_rgba(74,222,128,0.2)]'
+                : 'text-[#dde5da] hover:bg-[#1a120c] hover:text-[#4ade80] border border-transparent hover:border-[rgba(255,255,255,0.05)]'
+            }`;
+
+            return (
+              <a
+                key={item.name}
+                href={item.href}
+                onClick={() => setIsMenuOpen(false)}
+                className={linkClasses}
+              >
+                <item.icon className={`w-5 h-5 ${isActive ? 'text-[#4ade80]' : 'text-[#869486]'}`} />
+                <span className="font-medium text-base tracking-wide uppercase">{item.name}</span>
+              </a>
+            );
+          })}
+        </nav>
+
+        <div className="p-4 border-t border-[rgba(255,255,255,0.05)] bg-[#0e150f]">
+          <a
+            href="#community"
+            onClick={() => setIsMenuOpen(false)}
+            className="flex items-center justify-center gap-2 w-full btn-primary py-4 text-base uppercase tracking-wider"
+          >
+            <Users className="w-5 h-5" />
+            Join Server
+          </a>
         </div>
       </aside>
     </>

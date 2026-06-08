@@ -5,3 +5,5 @@
 \n- Added `config.json` to handle site configurations like title, description, and community links.
 \n- Integrated `config.json` into the React application, dynamically setting page title, description, and updating components like Hero, Community, Navbar, and Footer to use the configured data.
 - **Astro Migration**: Migrated a Vite-React project to Astro.js by setting up `astro.config.mjs` with React and Tailwind integrations. Ported the root component to `src/pages/index.astro` and used `client:load` on interactive React components. Updated tsconfig.json properly to handle Astro setup alongside existing React code.
+- **Navigation Redesign**: Changed navigation layout iteratively to match user preferences. Adopted a hybrid approach: sticky top navigation bar for desktop and a right-aligned slide-in half-sidebar for mobile.
+- **Design System Application**: Enforced "Digital Verdance" design principles globally across components: sharp 0px border-radiuses, deep dark backgrounds (`#0e150f`, `#121212`), primary green `#4ade80` for accents, and the `Outfit` font for typography.
