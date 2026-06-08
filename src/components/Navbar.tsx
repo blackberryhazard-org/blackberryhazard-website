@@ -1,9 +1,10 @@
-import { Menu, X, Terminal, Users, MessageSquare, Code, ChevronRight, ChevronDown, CodeSquare } from 'lucide-react';
+import { Menu, X, Terminal, Users, MessageSquare, Code, ChevronRight, ChevronDown, CodeSquare, ArrowLeftToLine, ArrowRightToLine } from 'lucide-react';
 import { useState, useEffect } from 'react';
 import { config } from '../config';
 
 export function Navbar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [isDesktopCollapsed, setIsDesktopCollapsed] = useState(false);
   const [openMenus, setOpenMenus] = useState<Record<string, boolean>>({
     'Navigation': true
   });
@@ -22,10 +23,19 @@ export function Navbar() {
   }, []);
 
   const toggleMenu = (title: string) => {
+    if (isDesktopCollapsed) {
+      setIsDesktopCollapsed(false);
+      setOpenMenus(prev => ({ ...prev, [title]: true }));
+      return;
+    }
     setOpenMenus(prev => ({
       ...prev,
       [title]: !prev[title]
     }));
+  };
+
+  const toggleDesktopSidebar = () => {
+    setIsDesktopCollapsed(!isDesktopCollapsed);
   };
 
   const getIconForLink = (label: string) => {
@@ -54,8 +64,8 @@ export function Navbar() {
   return (
     <>
       {/* Mobile Topbar & Full-Screen Menu */}
-      <div className="md:hidden">
-        <header className="h-16 border-b border-[rgba(255,255,255,0.05)] bg-[#121212] flex items-center justify-between px-4 sticky top-0 z-40">
+      <div className="md:hidden flex-shrink-0 z-40">
+        <header className="h-16 border-b border-[rgba(255,255,255,0.05)] bg-[#121212] flex items-center justify-between px-4 sticky top-0">
            <a href="/" className="flex items-center gap-2 group">
             <div className="w-7 h-7 bg-[#4ade80] flex items-center justify-center shadow-[0_0_10px_rgba(74,222,128,0.3)]">
               <CodeSquare className="w-4 h-4 text-[#121212]" />
@@ -143,40 +153,49 @@ export function Navbar() {
       </div>
 
       {/* Desktop Sidebar */}
-      <aside className="w-64 h-screen border-r border-[rgba(255,255,255,0.05)] bg-[#121212] flex-shrink-0 hidden md:flex flex-col">
-        <div className="p-6">
-          <a href="/" className="flex items-center gap-2 group">
-            <div className="w-8 h-8 bg-[#4ade80] flex items-center justify-center group-hover:brightness-110 transition-all shadow-[0_0_10px_rgba(74,222,128,0.3)]">
-              <CodeSquare className="w-5 h-5 text-[#121212]" />
-            </div>
-            <span className="text-xl font-bold tracking-tight text-white group-hover:text-[#4ade80] transition-colors uppercase tracking-[0.05em]">BBHZR</span>
-          </a>
+      <aside className={`h-screen border-r border-[rgba(255,255,255,0.05)] bg-[#121212] flex-shrink-0 hidden md:flex flex-col transition-all duration-300 ease-in-out ${isDesktopCollapsed ? 'w-20' : 'w-64'}`}>
+        <div className={`p-6 flex items-center justify-between`}>
+          {!isDesktopCollapsed && (
+            <a href="/" className="flex items-center gap-2 group overflow-hidden">
+              <div className="w-8 h-8 flex-shrink-0 bg-[#4ade80] flex items-center justify-center group-hover:brightness-110 transition-all shadow-[0_0_10px_rgba(74,222,128,0.3)]">
+                <CodeSquare className="w-5 h-5 text-[#121212]" />
+              </div>
+              <span className="text-xl font-bold tracking-tight text-white group-hover:text-[#4ade80] transition-colors uppercase tracking-[0.05em] truncate">BBHZR</span>
+            </a>
+          )}
+          {isDesktopCollapsed && (
+             <a href="/" className="flex items-center gap-2 group mx-auto">
+              <div className="w-8 h-8 flex-shrink-0 bg-[#4ade80] flex items-center justify-center group-hover:brightness-110 transition-all shadow-[0_0_10px_rgba(74,222,128,0.3)]">
+                <CodeSquare className="w-5 h-5 text-[#121212]" />
+              </div>
+            </a>
+          )}
         </div>
 
-        <nav className="flex-1 px-4 mt-2 overflow-y-auto custom-scrollbar">
+        <nav className="flex-1 px-4 mt-2 overflow-y-auto custom-scrollbar overflow-x-hidden">
           <div className="space-y-6">
             {menus.map(menu => {
-              const isOpen = openMenus[menu.title];
+              const isOpen = openMenus[menu.title] && !isDesktopCollapsed;
               return (
                 <div key={menu.title}>
                   <button
                     onClick={() => toggleMenu(menu.title)}
-                    className="w-full px-3 mb-2 flex items-center justify-between text-[#bccabb] hover:text-white transition-colors"
+                    className={`w-full px-3 mb-2 flex items-center text-[#bccabb] hover:text-white transition-colors ${isDesktopCollapsed ? 'justify-center' : 'justify-between'}`}
+                    title={isDesktopCollapsed ? menu.title : ''}
                   >
-                    <div className="flex items-center gap-2 text-xs font-bold uppercase tracking-wider">
-                      <menu.icon className="w-4 h-4" />
-                      {menu.title}
+                    <div className="flex items-center gap-2 text-xs font-bold uppercase tracking-wider overflow-hidden">
+                      <menu.icon className="w-5 h-5 flex-shrink-0" />
+                      {!isDesktopCollapsed && <span className="truncate">{menu.title}</span>}
                     </div>
-                    {isOpen ? <ChevronDown className="w-4 h-4" /> : <ChevronRight className="w-4 h-4" />}
+                    {!isDesktopCollapsed && (isOpen ? <ChevronDown className="w-4 h-4 flex-shrink-0" /> : <ChevronRight className="w-4 h-4 flex-shrink-0" />)}
                   </button>
 
-                  {isOpen && (
+                  {isOpen && !isDesktopCollapsed && (
                     <div className="space-y-1 pl-3 border-l border-[rgba(255,255,255,0.05)] ml-5">
                       {menu.subItems.map((item) => {
-                        // Simple active state checking
                         const isActive = (activePath === '' && item.href === '#') || activePath === item.href;
 
-                        const linkClasses = `flex items-center gap-3 px-3 py-2 transition-colors text-sm ${
+                        const linkClasses = `flex items-center gap-3 px-3 py-2 transition-colors text-sm overflow-hidden ${
                           isActive
                             ? 'bg-[#1a120c] text-[#4ade80] border border-[#4ade80] shadow-[0_0_5px_rgba(74,222,128,0.2)]'
                             : 'text-[#dde5da] hover:text-[#4ade80] hover:bg-[#1a120c]'
@@ -188,8 +207,34 @@ export function Navbar() {
                             href={item.href}
                             className={linkClasses}
                           >
-                            <item.icon className={`w-4 h-4 ${isActive ? 'text-[#4ade80]' : ''}`} />
-                            <span className="font-medium">{item.name}</span>
+                            <item.icon className={`w-4 h-4 flex-shrink-0 ${isActive ? 'text-[#4ade80]' : ''}`} />
+                            <span className="font-medium truncate">{item.name}</span>
+                          </a>
+                        );
+                      })}
+                    </div>
+                  )}
+
+                  {/* Icon only links for collapsed state */}
+                   {isDesktopCollapsed && (
+                    <div className="space-y-2 mt-2">
+                      {menu.subItems.map((item) => {
+                        const isActive = (activePath === '' && item.href === '#') || activePath === item.href;
+
+                        const linkClasses = `flex items-center justify-center p-2 mx-auto transition-colors text-sm w-10 h-10 ${
+                          isActive
+                            ? 'bg-[#1a120c] text-[#4ade80] border border-[#4ade80] shadow-[0_0_5px_rgba(74,222,128,0.2)]'
+                            : 'text-[#dde5da] hover:text-[#4ade80] hover:bg-[#1a120c]'
+                        }`;
+
+                        return (
+                          <a
+                            key={item.name}
+                            href={item.href}
+                            className={linkClasses}
+                            title={item.name}
+                          >
+                            <item.icon className={`w-5 h-5 flex-shrink-0 ${isActive ? 'text-[#4ade80]' : ''}`} />
                           </a>
                         );
                       })}
@@ -201,14 +246,23 @@ export function Navbar() {
           </div>
         </nav>
 
-        <div className="p-4 border-t border-[rgba(255,255,255,0.05)]">
+        <div className="p-4 border-t border-[rgba(255,255,255,0.05)] flex flex-col gap-2">
           <a
             href="#community"
-            className="flex items-center justify-center gap-2 w-full btn-primary py-3 text-sm uppercase tracking-wider"
+            className={`flex items-center justify-center btn-primary transition-all duration-300 ${isDesktopCollapsed ? 'p-3 w-12 h-12 mx-auto' : 'px-4 py-3 gap-2 w-full text-sm uppercase tracking-wider'}`}
+            title={isDesktopCollapsed ? "Join Server" : ""}
           >
-            <Users className="w-4 h-4" />
-            Join Server
+            <Users className="w-5 h-5 flex-shrink-0" />
+            {!isDesktopCollapsed && <span>Join Server</span>}
           </a>
+
+          <button
+            onClick={toggleDesktopSidebar}
+            className="flex items-center justify-center p-2 text-[#869486] hover:text-white hover:bg-[rgba(255,255,255,0.05)] transition-colors mt-2"
+            title={isDesktopCollapsed ? "Expand sidebar" : "Collapse sidebar"}
+          >
+             {isDesktopCollapsed ? <ArrowRightToLine className="w-5 h-5" /> : <ArrowLeftToLine className="w-5 h-5" />}
+          </button>
         </div>
       </aside>
     </>
