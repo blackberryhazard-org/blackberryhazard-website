@@ -21,11 +21,11 @@ const socialIcon = (icon: string) => {
 
 export function Footer() {
   return (
-    <footer className="w-full border-t border-border bg-background py-8 md:py-12">
+    <footer className="w-full border-t border-border bg-[#121212] py-8 md:py-12">
       <div className="container mx-auto px-4 md:px-6">
         <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-4">
           <div className="space-y-4">
-            <a href="/" className="font-bold text-2xl tracking-tight bg-clip-text text-transparent bg-gradient-to-r from-primary-500 to-primary-600">
+            <a href="/" className="font-bold text-2xl tracking-tight bg-clip-text text-transparent bg-gradient-to-r from-primary-500 to-primary-500">
               {config.title}
             </a>
           </div>

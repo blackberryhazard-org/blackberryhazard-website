@@ -33,11 +33,11 @@ export function Community() {
         >
           <h2 className="text-3xl font-semibold tracking-tight md:text-4xl">
             Bergabung dengan Komunitas Kami di{" "}
-            <span className="block mt-2 text-primary-500">
+            <span className="block mt-2 text-primary">
               Berbagai Platform
             </span>
           </h2>
-          <p className="max-w-[600px] mx-auto text-muted-foreground md:text-lg/relaxed mt-4">
+          <p className="max-w-[600px] mx-auto text-on-surface-variant md:text-lg/relaxed mt-4">
             Terhubung dengan sesama anomali di komunitas kami
           </p>
         </motion.div>
@@ -54,13 +54,13 @@ export function Community() {
                 delay: index * 0.1,
               }}
             >
-              <div className="flex flex-col h-full bg-card rounded-2xl border border-border p-6 hover:shadow-lg transition-all group overflow-hidden relative">
+              <div className="flex flex-col h-full bg-surface-container rounded-2xl border border-outline p-6 hover:shadow-lg transition-all group overflow-hidden relative">
                 <div className="absolute top-0 right-0 w-32 h-32 bg-primary/5 rounded-bl-full -z-10 transition-all group-hover:scale-110"></div>
                 <div className="text-primary">{getIcon(item.icon)}</div>
                 <h3 className="text-xl font-bold mb-2 group-hover:text-primary transition-colors">
                   {item.name}
                 </h3>
-                <p className="text-muted-foreground flex-1 mb-6">
+                <p className="text-on-surface-variant flex-1 mb-6">
                   Join our {item.name} community today!
                 </p>
                 <a
