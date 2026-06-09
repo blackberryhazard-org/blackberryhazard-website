@@ -2,7 +2,7 @@ import { motion } from 'motion/react';
 
 export function JoinCta() {
   return (
-    <section className="w-full py-20 md:py-32 bg-gradient-to-br from-primary-500 to-primary-600 relative overflow-hidden">
+    <section className="w-full py-20 md:py-32 bg-gradient-to-br from-primary-500 to-primary-500 relative overflow-hidden">
       <div
         className="absolute inset-0 opacity-10"
         style={{

@@ -1,35 +1,53 @@
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700&display=swap');
 @import "tailwindcss";
 
 @theme {
-  --font-sans: "Poppins", ui-sans-serif, system-ui, sans-serif;
+  --font-sans: "Outfit", ui-sans-serif, system-ui, sans-serif;
   
-  /* Background & Foreground (Dark theme by default) */
-  --color-background: #000000;
-  --color-foreground: #FFFFFF; /* Ultra White */
+  --color-background: #121212;
+  --color-foreground: #dde5da;
   
-  /* Muted elements using Silver Ray */
-  --color-muted: #1f1f22;
-  --color-muted-foreground: #C0C0C0; /* Silver Ray */
+  --color-surface: #0e150f;
+  --color-surface-dim: #0e150f;
+  --color-surface-bright: #333b34;
+  --color-surface-container-lowest: #09100a;
+  --color-surface-container-low: #161d17;
+  --color-surface-container: #1a211b;
+  --color-surface-container-high: #242c25;
+  --color-surface-container-highest: #2f372f;
   
-  /* Primary: Ultraman Red */
-  --color-primary: #FF0000; /* Ultraman Red */
-  --color-primary-foreground: #FFFFFF; /* Ultra White */
-  --color-primary-500: #FF0000; /* Ultraman Red */
-  --color-primary-600: #cc0000; 
+  --color-on-surface: #dde5da;
+  --color-on-surface-variant: #bccabb;
+  --color-surface-variant: #2f372f;
   
-  /* Borders and Inputs */
-  --color-border: #27272a;
-  --color-input: #27272a;
+  --color-primary: #4ade80;
+  --color-on-primary: #121212;
+  --color-primary-500: #4ade80;
   
-  /* Secondary/Accent: Blazer Blue */
-  --color-accent: #0044FF; /* Blazer Blue */
-  --color-accent-foreground: #FFFFFF; /* Ultra White */
+  --color-border: rgba(255, 255, 255, 0.05);
+  --color-input: #1a120c;
   
-  /* Specific colors used in gradients and accents */
-  --color-blue-400: #0044FF; /* Overwrite Tailwind's blue-400 for Blazer Blue in the glowing backgrounds */
-  --color-yellow-300: #FFD700; /* Overwrite Tailwind's yellow-300 for Beam Yellow */
-  --color-green-500: #00FF00; /* Monster Green */
+  --color-accent: #1a120c;
+  --color-accent-foreground: #4ade80;
+
+  --color-error: #ffb4ab;
+  --color-on-error: #690005;
+
+  /* Overrides for radius to enforce Sharp shapes (0px) */
+  --radius-sm: 0px;
+  --radius-md: 0px;
+  --radius-lg: 0px;
+  --radius-xl: 0px;
+  --radius-2xl: 0px;
+  --radius-3xl: 0px;
+  --radius-full: 0px;
+}
+
+/* Base styles enforcing 0px radius on standard elements just in case */
+@layer base {
+  *, ::before, ::after {
+    border-radius: 0px !important;
+  }
 }
 
 @utility container {
@@ -55,4 +73,26 @@
   to {
     opacity: 1;
   }
+}
+
+/* Custom Scrollbar */
+.custom-scrollbar::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb:hover {
+  background: rgba(74, 222, 128, 0.3);
+}
+
+.btn-primary {
+  @apply bg-primary text-[#121212] font-bold border border-primary hover:brightness-110 transition-all shadow-[0_0_10px_rgba(74,222,128,0.2)];
 }
