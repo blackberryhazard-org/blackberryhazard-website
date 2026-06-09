@@ -1,4 +1,4 @@
-import { Menu, X, Terminal, Users, MessageSquare, Code, CodeSquare } from 'lucide-react';
+import { Icon } from "@iconify/react";
 import { useState, useEffect } from 'react';
 import { config } from '../config';
 
@@ -28,14 +28,14 @@ export function Navbar() {
 
   const getIconForLink = (label: string) => {
     switch (label.toLowerCase()) {
-      case 'komunitas': return Users;
-      case 'testimoni': return MessageSquare;
-      default: return Terminal;
+      case 'komunitas': return "lucide:users";
+      case 'testimoni': return "lucide:message-square";
+      default: return "lucide:terminal";
     }
   };
 
   const menuItems = [
-    { name: 'Home', href: '#', icon: Code },
+    { name: 'Home', href: '#', icon: "lucide:code" },
     ...config.navbar.links.map(link => ({
       name: link.label,
       href: link.url,
@@ -49,7 +49,7 @@ export function Navbar() {
       <header className="sticky top-0 z-40 w-full bg-[#0e150f]/90 backdrop-blur-md border-b border-[rgba(255,255,255,0.05)] px-4 md:px-8 py-4 flex justify-between items-center">
         <a href="/" className="flex items-center gap-2 group">
           <div className="w-8 h-8 bg-[#4ade80] flex items-center justify-center shadow-[0_0_10px_rgba(74,222,128,0.3)] transition-transform group-hover:scale-105">
-            <CodeSquare className="w-4 h-4 text-[#121212]" />
+            <Icon icon="lucide:code-square" className="w-4 h-4 text-[#121212]" />
           </div>
           <span className="font-bold text-xl tracking-tight text-white group-hover:text-[#4ade80] transition-colors uppercase tracking-[0.05em]">{config.title}</span>
         </a>
@@ -72,7 +72,7 @@ export function Navbar() {
 
         <div className="flex items-center gap-4">
           <a href="#community" className="hidden md:flex items-center justify-center gap-2 btn-primary px-6 py-2 text-sm uppercase tracking-wider">
-            <Users className="w-4 h-4" />
+            <Icon icon="lucide:users" className="w-4 h-4" />
             Join Server
           </a>
 
@@ -82,7 +82,7 @@ export function Navbar() {
             className="block md:hidden p-2 text-[#dde5da] hover:bg-[#1a120c] transition border border-transparent hover:border-[rgba(255,255,255,0.05)]"
             aria-label="Buka Menu"
           >
-            <Menu className="w-6 h-6" />
+            <Icon icon="lucide:menu" className="w-6 h-6" />
           </button>
         </div>
       </header>
@@ -104,7 +104,7 @@ export function Navbar() {
             className="p-1.5 text-[#dde5da] hover:text-[#4ade80] hover:bg-[#1a120c] transition border border-transparent hover:border-[rgba(255,255,255,0.05)]"
             aria-label="Tutup Menu"
           >
-            <X className="w-5 h-5" />
+            <Icon icon="lucide:x" className="w-5 h-5" />
           </button>
         </div>
 
@@ -125,7 +125,7 @@ export function Navbar() {
                 onClick={() => setIsMenuOpen(false)}
                 className={linkClasses}
               >
-                <item.icon className={`w-5 h-5 ${isActive ? 'text-[#4ade80]' : 'text-[#869486]'}`} />
+                <Icon icon={item.icon} className={`w-5 h-5 ${isActive ? "text-[#4ade80]" : "text-[#869486]"}`} />
                 <span className="font-medium text-base tracking-wide uppercase">{item.name}</span>
               </a>
             );
@@ -138,7 +138,7 @@ export function Navbar() {
             onClick={() => setIsMenuOpen(false)}
             className="flex items-center justify-center gap-2 w-full btn-primary py-4 text-base uppercase tracking-wider"
           >
-            <Users className="w-5 h-5" />
+            <Icon icon="lucide:users" className="w-5 h-5" />
             Join Server
           </a>
         </div>

@@ -7,12 +7,11 @@ import { Testimonials } from '../components/Testimonials';
 import { JoinCta } from '../components/JoinCta';
 import { Footer } from '../components/Footer';
 import { config } from '../config';
+import { SEO } from "astro-seo";
 
 const lang = config.language.split('-')[0];
-const ogLocale = config.language.replace('-', '_');
 const siteUrl = config.url.replace(/\/$/, '');
 const ogImage = `${siteUrl}/${config.thumbnail.replace(/^\.\//, '')}`;
-// Inline favicon so the page never 404s on a missing icon file.
 const favicon =
   "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E%F0%9F%93%B1%3C/text%3E%3C/svg%3E";
 ---
@@ -23,29 +22,41 @@ const favicon =
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="icon" href={favicon} />
-    <link rel="canonical" href={siteUrl} />
     <meta name="generator" content={Astro.generator} />
-
-    <title>{config.title}</title>
-    <meta name="description" content={config.description} />
-    <meta name="keywords" content={config.keywords.join(', ')} />
-    <meta name="author" content={config.author} />
     <meta name="theme-color" content="#0e150f" />
 
-    <!-- Open Graph -->
-    <meta property="og:type" content="website" />
-    <meta property="og:site_name" content={config.title} />
-    <meta property="og:title" content={config.title} />
-    <meta property="og:description" content={config.description} />
-    <meta property="og:url" content={siteUrl} />
-    <meta property="og:image" content={ogImage} />
-    <meta property="og:locale" content={ogLocale} />
+    <SEO
+      title={config.title}
+      description={config.description}
+      canonical={siteUrl}
+      openGraph={{
+        basic: {
+          title: config.title,
+          type: "website",
+          image: ogImage,
+          url: siteUrl,
+        },
+        optional: {
+          description: config.description,
+          siteName: config.title,
+          locale: config.language.replace('-', '_'),
+        }
+      }}
+      twitter={{
+        card: "summary_large_image",
+        title: config.title,
+        description: config.description,
+        image: ogImage,
+      }}
+      extend={{
+        meta: [
+          { name: "keywords", content: config.keywords.join(', ') },
+          { name: "author", content: config.author }
+        ]
+      }}
+    />
 
-    <!-- Twitter -->
-    <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content={config.title} />
-    <meta name="twitter:description" content={config.description} />
-    <meta name="twitter:image" content={ogImage} />
+    <script defer src="https://cloud.umami.is/script.js" data-website-id="8425d2fd-c98b-4a2a-afc0-c033de3baa14"></script>
   </head>
   <body class="bg-background text-foreground antialiased min-h-screen flex flex-col relative overflow-x-hidden font-sans">
     <Navbar client:load />

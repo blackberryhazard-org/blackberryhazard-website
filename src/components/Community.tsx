@@ -1,14 +1,14 @@
 import { motion } from 'motion/react';
 import { config } from '../config';
-import { Facebook, MessageCircle, Info } from 'lucide-react'; // Using Lucide as fallback icons
+import { Icon } from "@iconify/react";
 
 // Fallback icon helper
 const getIcon = (iconName: string) => {
     switch (iconName.toLowerCase()) {
         case 'facebook':
-            return <Facebook className="w-10 h-10 mb-4" />;
+            return <Icon icon="lucide:facebook" className="w-10 h-10 mb-4" />;
         case 'whatsapp':
-            return <MessageCircle className="w-10 h-10 mb-4" />;
+            return <Icon icon="lucide:message-circle" className="w-10 h-10 mb-4" />;
         case 'discord':
             return (
                 <svg fill="currentColor" viewBox="0 0 640 512" className="w-10 h-10 mb-4">
@@ -16,7 +16,7 @@ const getIcon = (iconName: string) => {
                 </svg>
             )
         default:
-            return <Info className="w-10 h-10 mb-4" />;
+            return <Icon icon="lucide:info" className="w-10 h-10 mb-4" />;
     }
 }
 

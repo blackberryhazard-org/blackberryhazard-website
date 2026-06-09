@@ -8,3 +8,7 @@
 - **Navigation Redesign**: Changed navigation layout iteratively to match user preferences. Adopted a hybrid approach: sticky top navigation bar for desktop and a right-aligned slide-in half-sidebar for mobile.
 - **Design System Application**: Enforced "Digital Verdance" design principles globally across components: sharp 0px border-radiuses, deep dark backgrounds (`#0e150f`, `#121212`), primary green `#4ade80` for accents, and the `Outfit` font for typography.
 - **Post-submission Hotfix:** Refined CSS variables and overridden legacy Tailwind gradient classes (`from-primary-500 to-primary-600`) to strictly adhere to the Digital Verdance theme. Also ensured components properly use `#121212` backgrounds instead of previous configuration backgrounds that skewed colors.
+- **Astro Integrations:** Installed and configured `astro-seo` to streamline Open Graph, Canonical, and Twitter meta tags inside `src/pages/index.astro`.
+- **Astro Utilities:** Added `astro-robots-txt` and `@astrojs/sitemap` to auto-generate SEO files during build time. Configured via `astro.config.mjs` and required `site` url.
+- **Analytics:** Added Umami script to the `<head>` in `index.astro` as per instructions.
+- **Icons Migration:** Removed `lucide-react` dependency to reduce bundle footprint, replacing it with `@iconify/react` handling `lucide:*` strings, as `astro-icon` cannot be used directly inside interactive React components (`client:load`).
