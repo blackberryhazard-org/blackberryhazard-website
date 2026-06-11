@@ -19,3 +19,11 @@
 - Semantic tokens defined in `src/index.css` (`var(--color-surface)`, `var(--color-primary-container)`, etc.) MUST be used instead of hardcoded hex colors.
 - Shadows and drop-shadows are largely avoided unless explicitly permitted for real-time active indicators.
 - Base background and component cards rely on layered surface tokens (e.g., `surface`, `surface-container`, `surface-container-high`).
+
+## Config Updates
+- Links and navigation metadata are controlled within `config.json`.
+- The navbar dynamically resolves link names and assigns generic icons, but overrides like `lucide:rocket` (for Space) and `lucide:building-2` (for Organization) must be added directly into the `getIconForLink` switch function in `src/components/Navbar.tsx`.
+
+## Pages & Routing
+- The project runs on Astro, so top-level pages correspond to `.astro` files inside `src/pages`.
+- For React integration, interactive components inside Astro pages require the `client:load` or `client:idle` directive.

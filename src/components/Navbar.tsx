@@ -28,8 +28,8 @@ export function Navbar() {
 
   const getIconForLink = (label: string) => {
     switch (label.toLowerCase()) {
-      case 'komunitas': return "lucide:users";
-      case 'testimoni': return "lucide:message-square";
+      case 'space': return "lucide:rocket";
+      case 'organization': return "lucide:building-2";
       default: return "lucide:terminal";
     }
   };
@@ -57,11 +57,11 @@ export function Navbar() {
         {/* Desktop Nav */}
         <nav className="hidden md:flex items-center gap-8 font-medium text-sm">
           {menuItems.map((item) => {
-            const isActive = (activePath === '' && item.href === '#') || activePath === item.href;
+            const isActive = (activePath === '' && item.href === '#') || (item.href.startsWith('#') && activePath === item.href) || (typeof window !== 'undefined' && window.location.pathname === item.href);
             return (
               <a
                 key={item.name}
-                href={item.href}
+                href={item.href} target={item.href.startsWith('http') ? '_blank' : '_self'} rel={item.href.startsWith('http') ? 'noreferrer' : ''}
                 className={`transition-colors uppercase tracking-wider ${isActive ? 'text-[var(--color-primary)]' : 'text-[var(--color-on-surface-variant)] hover:text-on-surface'}`}
               >
                 {item.name}
@@ -110,7 +110,7 @@ export function Navbar() {
 
         <nav className="p-4 flex-1 space-y-2 overflow-y-auto">
           {menuItems.map((item) => {
-            const isActive = (activePath === '' && item.href === '#') || activePath === item.href;
+            const isActive = (activePath === '' && item.href === '#') || (item.href.startsWith('#') && activePath === item.href) || (typeof window !== 'undefined' && window.location.pathname === item.href);
 
             const linkClasses = `flex items-center gap-3 px-4 py-3 transition-colors ${
               isActive
@@ -121,7 +121,7 @@ export function Navbar() {
             return (
               <a
                 key={item.name}
-                href={item.href}
+                href={item.href} target={item.href.startsWith('http') ? '_blank' : '_self'} rel={item.href.startsWith('http') ? 'noreferrer' : ''}
                 onClick={() => setIsMenuOpen(false)}
                 className={linkClasses}
               >
