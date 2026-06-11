@@ -2,7 +2,7 @@ import { motion } from 'motion/react';
 
 export function JoinCta() {
   return (
-    <section className="w-full py-20 md:py-32 bg-gradient-to-br from-primary-500 to-primary-500 relative overflow-hidden">
+    <section className="w-full py-20 md:py-32 bg-surface-container border-y border-outline-variant relative overflow-hidden">
       <div
         className="absolute inset-0 opacity-10"
         style={{
@@ -20,16 +20,16 @@ export function JoinCta() {
             className="flex-1 text-center lg:text-left space-y-8"
           >
             <div>
-              <h2 className="text-4xl md:text-5xl font-bold text-white leading-tight">
+              <h2 className="text-4xl md:text-5xl font-bold text-on-surface leading-tight">
                 <span className="block">LET'S GO</span>
                 <span className="block text-5xl md:text-6xl mt-2">
-                  <span className="text-yellow-300">SAAT</span>
-                  <span className="text-white">NYA</span>
+                  <span className="text-primary">SAAT</span>
+                  <span className="text-on-surface">NYA</span>
                 </span>
                 <span className="block mt-2">KAMU JOIN!</span>
               </h2>
             </div>
-            <p className="text-lg md:text-xl text-white/90 max-w-2xl mx-auto lg:mx-0">
+            <p className="text-lg md:text-xl text-on-surface/90 max-w-2xl mx-auto lg:mx-0">
               Jadilah bagian dari komunitas developer terbesar di Indonesia.
               Tingkatkan skill, perluas jaringan, dan raih kesempatan karir
               bersama kami!
@@ -37,7 +37,7 @@ export function JoinCta() {
             <div className="flex justify-center lg:justify-start">
               <a
                 href="#community"
-                className="flex items-center gap-4 px-8 py-4 bg-yellow-300 hover:bg-yellow-400 text-gray-900 rounded-full text-lg font-semibold transition-all hover:gap-6 group"
+                className="flex items-center gap-4 px-8 py-4 bg-primary-container hover:brightness-110 text-on-primary-container rounded-none text-lg font-semibold transition-all hover:gap-6 group"
               >
                 <span>Join Sekarang</span>
                 <svg

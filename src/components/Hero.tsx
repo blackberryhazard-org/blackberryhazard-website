@@ -5,10 +5,10 @@ export function Hero() {
   return (
     <section className="relative w-full py-20 md:py-32 lg:py-40 overflow-hidden">
       <div className="absolute inset-0 -z-10 overflow-hidden">
-        <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-b from-[#121212] to-[#121212]/50"></div>
-        <div className="absolute top-1/4 -left-20 w-80 h-80 rounded-full bg-gradient-to-r from-primary/20 to-blue-400/20 blur-3xl opacity-60"></div>
-        <div className="absolute bottom-1/3 -right-20 w-80 h-80 rounded-full bg-gradient-to-r from-blue-400/20 to-primary/20 blur-3xl opacity-60"></div>
-        <div className="absolute inset-0 bg-[linear-gradient(rgba(59,130,246,0.05)_1px,transparent_1px),linear-gradient(to_right,rgba(59,130,246,0.05)_1px,transparent_1px)] bg-[size:40px_40px]"></div>
+        <div className="absolute top-0 left-0 w-full h-full bg-surface"></div>
+
+
+        <div className="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.02)_1px,transparent_1px),linear-gradient(to_right,rgba(255,255,255,0.02)_1px,transparent_1px)] bg-[size:40px_40px]"></div>
       </div>
       <div className="container px-4 md:px-6 relative mx-auto">
         <div className="grid gap-6 lg:grid-cols-2 lg:gap-12 items-center">
@@ -20,14 +20,14 @@ export function Hero() {
             className="flex flex-col justify-center space-y-8"
           >
             <div className="flex flex-wrap items-center gap-2">
-              <span className="inline-flex items-center rounded-full border border-outline px-3 py-1 text-sm">
+              <span className="inline-flex items-center border border-primary bg-primary/10 px-2.5 py-1 text-sm text-primary uppercase tracking-[0.05em] font-medium">
                 Komunitas IT & Gamer Indonesia
               </span>
             </div>
             <div className="space-y-4">
-              <h1 className="text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold tracking-tighter bg-clip-text text-transparent bg-gradient-to-r from-on-surface via-on-surface to-on-surface/70">
+              <h1 className="text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold tracking-tighter  text-on-surface">
                 Penyuka Blackberry{" "}
-                <span className="bg-clip-text bg-gradient-to-r text-primary">
+                <span className="text-primary">
                   Enggan Yapping
                 </span>
               </h1>
@@ -38,34 +38,34 @@ export function Hero() {
             <div className="flex flex-col sm:flex-row gap-4 w-full sm:w-auto">
               <a
                 href="#community"
-                className="inline-flex items-center justify-center rounded-lg bg-primary text-on-primary px-6 py-3 text-sm font-medium hover:bg-primary/90 transition-colors"
+                className="inline-flex items-center justify-center rounded-none bg-primary text-on-primary px-6 py-3 text-sm font-medium hover:bg-primary/90 transition-colors"
               >
                 Join Komunitas
               </a>
               <a
                 href="#testimonials"
-                className="inline-flex items-center justify-center rounded-lg border border-input bg-[#121212] px-6 py-3 text-sm font-medium hover:bg-accent hover:text-accent-foreground transition-colors w-full sm:w-auto"
+                className="inline-flex items-center justify-center rounded-none border border-outline-variant bg-surface-container px-6 py-3 text-sm font-medium hover:bg-accent hover:text-accent-foreground transition-colors w-full sm:w-auto"
               >
                 Baca Testimoni
               </a>
             </div>
             <div className="flex flex-wrap justify-center md:justify-start gap-6 sm:gap-8">
               <div className="flex flex-col items-center">
-                <div className="text-2xl font-bold bg-clip-text text-primary">
+                <div className="text-2xl font-bold text-primary">
                   0
                 </div>
                 <div className="text-xs text-on-surface-variant">Member</div>
               </div>
               <div className="hidden sm:block h-10 border-r border-outline mx-4"></div>
               <div className="flex flex-col items-center">
-                <div className="text-2xl font-bold bg-clip-text text-primary">
+                <div className="text-2xl font-bold text-primary">
                   {config.community.length}
                 </div>
                 <div className="text-xs text-on-surface-variant">Platform</div>
               </div>
               <div className="hidden sm:block h-10 border-r border-outline mx-4"></div>
               <div className="flex flex-col items-center">
-                <div className="text-2xl font-bold bg-clip-text text-primary">
+                <div className="text-2xl font-bold text-primary">
                   24/7
                 </div>
                 <div className="text-xs text-on-surface-variant">Community</div>

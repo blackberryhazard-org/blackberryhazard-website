@@ -28,8 +28,8 @@ export function Navbar() {
 
   const getIconForLink = (label: string) => {
     switch (label.toLowerCase()) {
-      case 'komunitas': return "lucide:users";
-      case 'testimoni': return "lucide:message-square";
+      case 'space': return "lucide:rocket";
+      case 'organization': return "lucide:building-2";
       default: return "lucide:terminal";
     }
   };
@@ -46,23 +46,23 @@ export function Navbar() {
   return (
     <>
       {/* Top Navigation Bar */}
-      <header className="sticky top-0 z-40 w-full bg-[#0e150f]/90 backdrop-blur-md border-b border-[rgba(255,255,255,0.05)] px-4 md:px-8 py-4 flex justify-between items-center">
+      <header className="sticky top-0 z-40 w-full bg-[var(--color-surface)]/90 backdrop-blur-md border-b border-[var(--color-outline-variant)] px-4 md:px-8 py-4 flex justify-between items-center">
         <a href="/" className="flex items-center gap-2 group">
-          <div className="w-8 h-8 bg-[#4ade80] flex items-center justify-center shadow-[0_0_10px_rgba(74,222,128,0.3)] transition-transform group-hover:scale-105">
-            <Icon icon="lucide:code-square" className="w-4 h-4 text-[#121212]" />
+          <div className="w-8 h-8 bg-[var(--color-primary)] flex items-center justify-center shadow-none transition-transform group-hover:scale-105">
+            <Icon icon="lucide:code-square" className="w-4 h-4 text-[var(--color-surface-container-highest)]" />
           </div>
-          <span className="font-bold text-xl tracking-tight text-white group-hover:text-[#4ade80] transition-colors uppercase tracking-[0.05em]">{config.title}</span>
+          <span className="font-bold text-xl tracking-tight text-on-surface group-hover:text-[var(--color-primary)] transition-colors uppercase tracking-[0.05em]">{config.title}</span>
         </a>
 
         {/* Desktop Nav */}
         <nav className="hidden md:flex items-center gap-8 font-medium text-sm">
           {menuItems.map((item) => {
-            const isActive = (activePath === '' && item.href === '#') || activePath === item.href;
+            const isActive = (activePath === '' && item.href === '#') || (item.href.startsWith('#') && activePath === item.href) || (typeof window !== 'undefined' && window.location.pathname === item.href);
             return (
               <a
                 key={item.name}
-                href={item.href}
-                className={`transition-colors uppercase tracking-wider ${isActive ? 'text-[#4ade80]' : 'text-[#bccabb] hover:text-white'}`}
+                href={item.href} target={item.href.startsWith('http') ? '_blank' : '_self'} rel={item.href.startsWith('http') ? 'noreferrer' : ''}
+                className={`transition-colors uppercase tracking-wider ${isActive ? 'text-[var(--color-primary)]' : 'text-[var(--color-on-surface-variant)] hover:text-on-surface'}`}
               >
                 {item.name}
               </a>
@@ -79,7 +79,7 @@ export function Navbar() {
           {/* Mobile Menu Toggle */}
           <button
             onClick={() => setIsMenuOpen(true)}
-            className="block md:hidden p-2 text-[#dde5da] hover:bg-[#1a120c] transition border border-transparent hover:border-[rgba(255,255,255,0.05)]"
+            className="block md:hidden p-2 text-[var(--color-on-surface)] hover:bg-[var(--color-surface-container)] transition border border-outline-variant hover:border-[var(--color-outline-variant)]"
             aria-label="Buka Menu"
           >
             <Icon icon="lucide:menu" className="w-6 h-6" />
@@ -89,19 +89,19 @@ export function Navbar() {
 
       {/* Mobile Nav Backdrop */}
       <div
-        className={`fixed inset-0 bg-[#0e150f]/60 backdrop-blur-sm z-40 md:hidden transition-opacity duration-300 ${isMenuOpen ? 'opacity-100 pointer-events-auto' : 'opacity-0 pointer-events-none'}`}
+        className={`fixed inset-0 bg-[var(--color-surface)]/60 backdrop-blur-sm z-40 md:hidden transition-opacity duration-300 ${isMenuOpen ? 'opacity-100 pointer-events-auto' : 'opacity-0 pointer-events-none'}`}
         onClick={() => setIsMenuOpen(false)}
       ></div>
 
       {/* Mobile Half-Sidebar */}
       <aside
-        className={`fixed top-0 right-0 bottom-0 w-[70%] sm:w-[50%] bg-[#121212] border-l border-[rgba(255,255,255,0.05)] z-50 transition-transform duration-300 ease-out flex flex-col md:hidden shadow-2xl ${isMenuOpen ? 'translate-x-0' : 'translate-x-full'}`}
+        className={`fixed top-0 right-0 bottom-0 w-[70%] sm:w-[50%] bg-[var(--color-surface-container-highest)] border-l border-[var(--color-outline-variant)] z-50 transition-transform duration-300 ease-out flex flex-col md:hidden shadow-none ${isMenuOpen ? 'translate-x-0' : 'translate-x-full'}`}
       >
-        <div className="p-4 border-b border-[rgba(255,255,255,0.05)] flex justify-between items-center bg-[#0e150f]">
-          <span className="font-bold text-[#869486] text-xs tracking-wider uppercase">Menu</span>
+        <div className="p-4 border-b border-[var(--color-outline-variant)] flex justify-between items-center bg-[var(--color-surface)]">
+          <span className="font-bold text-outline text-xs tracking-wider uppercase">Menu</span>
           <button
             onClick={() => setIsMenuOpen(false)}
-            className="p-1.5 text-[#dde5da] hover:text-[#4ade80] hover:bg-[#1a120c] transition border border-transparent hover:border-[rgba(255,255,255,0.05)]"
+            className="p-1.5 text-[var(--color-on-surface)] hover:text-[var(--color-primary)] hover:bg-[var(--color-surface-container)] transition border border-outline-variant hover:border-[var(--color-outline-variant)]"
             aria-label="Tutup Menu"
           >
             <Icon icon="lucide:x" className="w-5 h-5" />
@@ -110,29 +110,29 @@ export function Navbar() {
 
         <nav className="p-4 flex-1 space-y-2 overflow-y-auto">
           {menuItems.map((item) => {
-            const isActive = (activePath === '' && item.href === '#') || activePath === item.href;
+            const isActive = (activePath === '' && item.href === '#') || (item.href.startsWith('#') && activePath === item.href) || (typeof window !== 'undefined' && window.location.pathname === item.href);
 
             const linkClasses = `flex items-center gap-3 px-4 py-3 transition-colors ${
               isActive
-                ? 'bg-[#1a120c] text-[#4ade80] border border-[#4ade80] shadow-[0_0_5px_rgba(74,222,128,0.2)]'
-                : 'text-[#dde5da] hover:bg-[#1a120c] hover:text-[#4ade80] border border-transparent hover:border-[rgba(255,255,255,0.05)]'
+                ? 'bg-[var(--color-surface-container)] text-[var(--color-primary)] border border-[var(--color-primary)] shadow-none'
+                : 'text-[var(--color-on-surface)] hover:bg-[var(--color-surface-container)] hover:text-[var(--color-primary)] border border-outline-variant hover:border-[var(--color-outline-variant)]'
             }`;
 
             return (
               <a
                 key={item.name}
-                href={item.href}
+                href={item.href} target={item.href.startsWith('http') ? '_blank' : '_self'} rel={item.href.startsWith('http') ? 'noreferrer' : ''}
                 onClick={() => setIsMenuOpen(false)}
                 className={linkClasses}
               >
-                <Icon icon={item.icon} className={`w-5 h-5 ${isActive ? "text-[#4ade80]" : "text-[#869486]"}`} />
+                <Icon icon={item.icon} className={`w-5 h-5 ${isActive ? "text-[var(--color-primary)]" : "text-outline"}`} />
                 <span className="font-medium text-base tracking-wide uppercase">{item.name}</span>
               </a>
             );
           })}
         </nav>
 
-        <div className="p-4 border-t border-[rgba(255,255,255,0.05)] bg-[#0e150f]">
+        <div className="p-4 border-t border-[var(--color-outline-variant)] bg-[var(--color-surface)]">
           <a
             href="#community"
             onClick={() => setIsMenuOpen(false)}

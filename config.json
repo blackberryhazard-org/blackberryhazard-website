@@ -5,29 +5,62 @@
   "url": "https://blackberryhazard-website.pages.dev",
   "language": "id-ID",
   "author": "BlackberryHazard",
-  "keywords": ["komunitas", "IT", "developer", "gamer", "indonesia", "blackberryhazard"],
+  "keywords": [
+    "komunitas",
+    "IT",
+    "developer",
+    "gamer",
+    "indonesia",
+    "blackberryhazard"
+  ],
   "theme": "dark",
   "navbar": {
     "logo": "./logo.png",
     "links": [
-      { "label": "Komunitas", "url": "#community" },
-      { "label": "Testimoni", "url": "#testimonials" }
+      {
+        "label": "Space",
+        "url": "https://blackberry-space.vercel.app"
+      },
+      {
+        "label": "Organization",
+        "url": "/organization"
+      }
     ]
   },
   "footer": {
     "copyright": "BlackberryHazard. All rights reserved.",
     "menu": [
-      { "label": "Komunitas", "url": "#community" },
-      { "label": "Testimoni", "url": "#testimonials" }
+      {
+        "label": "Komunitas",
+        "url": "#community"
+      },
+      {
+        "label": "Testimoni",
+        "url": "#testimonials"
+      }
     ],
     "legal": [
-      { "label": "Privacy Policy", "url": "#" },
-      { "label": "Terms of Service", "url": "#" }
+      {
+        "label": "Privacy Policy",
+        "url": "#"
+      },
+      {
+        "label": "Terms of Service",
+        "url": "#"
+      }
     ]
   },
   "social": [
-    { "label": "GitHub", "icon": "github", "url": "https://github.com/blackberryhazard-org" },
-    { "label": "Discord", "icon": "discord", "url": "https://discord.gg/example" }
+    {
+      "label": "GitHub",
+      "icon": "github",
+      "url": "https://github.com/blackberryhazard-org"
+    },
+    {
+      "label": "Discord",
+      "icon": "discord",
+      "url": "https://discord.gg/example"
+    }
   ],
   "community": [
     {
