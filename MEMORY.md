@@ -12,3 +12,10 @@
 - **Astro Utilities:** Added `astro-robots-txt` and `@astrojs/sitemap` to auto-generate SEO files during build time. Configured via `astro.config.mjs` and required `site` url.
 - **Analytics:** Added Umami script to the `<head>` in `index.astro` as per instructions.
 - **Icons Migration:** Removed `lucide-react` dependency to reduce bundle footprint, replacing it with `@iconify/react` handling `lucide:*` strings, as `astro-icon` cannot be used directly inside interactive React components (`client:load`).
+
+## Digital Verdance Design System
+- The UI adheres strictly to the "Digital Verdance" design system from DESIGN.md.
+- Organic shapes are strictly prohibited: All components MUST have sharp edges with exactly `0px` border-radius.
+- Semantic tokens defined in `src/index.css` (`var(--color-surface)`, `var(--color-primary-container)`, etc.) MUST be used instead of hardcoded hex colors.
+- Shadows and drop-shadows are largely avoided unless explicitly permitted for real-time active indicators.
+- Base background and component cards rely on layered surface tokens (e.g., `surface`, `surface-container`, `surface-container-high`).

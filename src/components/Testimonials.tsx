@@ -22,7 +22,7 @@ export function Testimonials() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.4, ease: "easeOut" }}
-            className="flex flex-col justify-between rounded-2xl bg-[#121212] p-6 shadow-sm border border-outline relative overflow-hidden"
+            className="flex flex-col justify-between rounded-none bg-surface-container p-6 shadow-none border border-outline-variant relative overflow-hidden"
           >
             <div className="absolute top-0 right-0 p-4 opacity-5">
               <svg className="w-12 h-12" fill="currentColor" viewBox="0 0 24 24">
@@ -31,7 +31,7 @@ export function Testimonials() {
             </div>
             <div className="space-y-4 relative z-10">
               <div className="flex items-center gap-4">
-                <div className="h-12 w-12 rounded-full overflow-hidden bg-surface-variant">
+                <div className="h-12 w-12 rounded-none overflow-hidden bg-surface-variant">
                   <img
                     src="https://cdn.discordapp.com/avatars/615809804245762058/2eb3f5022e3ab4b6002f232ce96a798b.webp?size=160"
                     alt="Rizky"
@@ -68,7 +68,7 @@ export function Testimonials() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.4, ease: "easeOut", delay: 0.1 }}
-            className="flex flex-col justify-between rounded-2xl bg-[#121212] p-6 shadow-sm border border-outline relative overflow-hidden"
+            className="flex flex-col justify-between rounded-none bg-surface-container p-6 shadow-none border border-outline-variant relative overflow-hidden"
           >
             <div className="absolute top-0 right-0 p-4 opacity-5">
               <svg className="w-12 h-12" fill="currentColor" viewBox="0 0 24 24">
@@ -77,7 +77,7 @@ export function Testimonials() {
             </div>
             <div className="space-y-4 relative z-10">
               <div className="flex items-center gap-4">
-                <div className="h-12 w-12 rounded-full overflow-hidden bg-surface-variant">
+                <div className="h-12 w-12 rounded-none overflow-hidden bg-surface-variant">
                   <img
                     src="https://cdn.discordapp.com/avatars/443657753731858452/d75b8eeb0579e0a05a4687d6d34e6b52.webp?size=160"
                     alt="Syahdan"
@@ -114,7 +114,7 @@ export function Testimonials() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.4, ease: "easeOut", delay: 0.2 }}
-            className="flex flex-col justify-between rounded-2xl bg-[#121212] p-6 shadow-sm border border-outline relative overflow-hidden"
+            className="flex flex-col justify-between rounded-none bg-surface-container p-6 shadow-none border border-outline-variant relative overflow-hidden"
           >
             <div className="absolute top-0 right-0 p-4 opacity-5">
               <svg className="w-12 h-12" fill="currentColor" viewBox="0 0 24 24">
@@ -123,7 +123,7 @@ export function Testimonials() {
             </div>
             <div className="space-y-4 relative z-10">
               <div className="flex items-center gap-4">
-                <div className="h-12 w-12 rounded-full overflow-hidden bg-surface-variant flex items-center justify-center text-xl font-bold bg-primary/10 text-primary">
+                <div className="h-12 w-12 rounded-none overflow-hidden bg-surface-variant flex items-center justify-center text-xl font-bold bg-primary/10 text-primary">
                   I
                 </div>
                 <div>
@@ -155,7 +155,7 @@ export function Testimonials() {
         <div className="flex justify-center">
           <a
             href="#community"
-            className="inline-flex items-center justify-center rounded-lg bg-primary text-on-primary px-6 py-3 text-sm font-medium hover:bg-primary/90 transition-colors"
+            className="inline-flex items-center justify-center rounded-none bg-primary text-on-primary px-6 py-3 text-sm font-medium hover:bg-primary/90 transition-colors"
           >
             Tulis Testimonimu
           </a>

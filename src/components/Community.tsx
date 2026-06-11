@@ -54,8 +54,8 @@ export function Community() {
                 delay: index * 0.1,
               }}
             >
-              <div className="flex flex-col h-full bg-surface-container rounded-2xl border border-outline p-6 hover:shadow-lg transition-all group overflow-hidden relative">
-                <div className="absolute top-0 right-0 w-32 h-32 bg-primary/5 rounded-bl-full -z-10 transition-all group-hover:scale-110"></div>
+              <div className="flex flex-col h-full bg-surface-container rounded-none border border-outline-variant p-6 transition-all group hover:bg-surface-container-high hover:border-primary duration-150 relative">
+
                 <div className="text-primary">{getIcon(item.icon)}</div>
                 <h3 className="text-xl font-bold mb-2 group-hover:text-primary transition-colors">
                   {item.name}
