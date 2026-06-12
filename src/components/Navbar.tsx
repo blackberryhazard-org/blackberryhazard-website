@@ -7,11 +7,13 @@ export function Navbar() {
   const [activePath, setActivePath] = useState('');
 
   useEffect(() => {
-    const handleHashChange = () => {
-      setActivePath(window.location.hash);
+    const updateActivePath = () => {
+      const hash = window.location.hash;
+      const path = window.location.pathname;
+      setActivePath(hash || path);
     };
-    window.addEventListener('hashchange', handleHashChange);
-    handleHashChange();
+    window.addEventListener('hashchange', updateActivePath);
+    updateActivePath();
 
     // Prevent scrolling when mobile menu is open
     if (isMenuOpen) {
@@ -21,7 +23,7 @@ export function Navbar() {
     }
 
     return () => {
-      window.removeEventListener('hashchange', handleHashChange);
+      window.removeEventListener('hashchange', updateActivePath);
       document.body.style.overflow = '';
     };
   }, [isMenuOpen]);
@@ -35,7 +37,7 @@ export function Navbar() {
   };
 
   const menuItems = [
-    { name: 'Home', href: '#', icon: "lucide:code" },
+    { name: 'Home', href: '/', icon: "lucide:code" },
     ...config.navbar.links.map(link => ({
       name: link.label,
       href: link.url,
@@ -57,7 +59,17 @@ export function Navbar() {
         {/* Desktop Nav */}
         <nav className="hidden md:flex items-center gap-8 font-medium text-sm">
           {menuItems.map((item) => {
-            const isActive = (activePath === '' && item.href === '#') || (item.href.startsWith('#') && activePath === item.href) || (typeof window !== 'undefined' && window.location.pathname === item.href);
+            let isActive = false;
+            if (typeof window !== 'undefined') {
+              const currentPath = window.location.pathname;
+              if (item.href === '/') {
+                isActive = currentPath === '/' && activePath === '/';
+              } else if (item.href.startsWith('#')) {
+                isActive = activePath === item.href || (activePath === currentPath && currentPath === '/' && item.href === '#');
+              } else {
+                isActive = currentPath === item.href || currentPath.startsWith(item.href + '/');
+              }
+            }
             return (
               <a
                 key={item.name}
@@ -110,7 +122,17 @@ export function Navbar() {
 
         <nav className="p-4 flex-1 space-y-2 overflow-y-auto">
           {menuItems.map((item) => {
-            const isActive = (activePath === '' && item.href === '#') || (item.href.startsWith('#') && activePath === item.href) || (typeof window !== 'undefined' && window.location.pathname === item.href);
+            let isActive = false;
+            if (typeof window !== 'undefined') {
+              const currentPath = window.location.pathname;
+              if (item.href === '/') {
+                isActive = currentPath === '/' && activePath === '/';
+              } else if (item.href.startsWith('#')) {
+                isActive = activePath === item.href || (activePath === currentPath && currentPath === '/' && item.href === '#');
+              } else {
+                isActive = currentPath === item.href || currentPath.startsWith(item.href + '/');
+              }
+            }
 
             const linkClasses = `flex items-center gap-3 px-4 py-3 transition-colors ${
               isActive

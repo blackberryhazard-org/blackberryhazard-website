@@ -1,0 +1,29 @@
+---
+import '../index.css';
+import BaseHead from '../components/BaseHead.astro';
+import { Navbar } from '../components/Navbar';
+import { Footer } from '../components/Footer';
+import { config } from '../config';
+
+export interface Props {
+    title?: string;
+    description?: string;
+}
+
+const { title, description } = Astro.props;
+const lang = config.language.split('-')[0];
+---
+
+<!doctype html>
+<html lang={lang}>
+  <head>
+    <BaseHead title={title} description={description} />
+  </head>
+  <body class="bg-background text-foreground antialiased min-h-screen flex flex-col relative overflow-x-hidden font-sans">
+    <Navbar client:load />
+    <main class="flex-1 scroll-smooth">
+      <slot />
+    </main>
+    <Footer client:idle />
+  </body>
+</html>

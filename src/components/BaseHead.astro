@@ -1,0 +1,54 @@
+---
+import { config } from '../config';
+import { SEO } from "astro-seo";
+
+export interface Props {
+    title?: string;
+    description?: string;
+}
+
+const { title = config.title, description = config.description } = Astro.props;
+
+const siteUrl = config.url.replace(/\/$/, '');
+const ogImage = `${siteUrl}/${config.thumbnail.replace(/^\.\//, '')}`;
+const favicon = "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E%F0%9F%93%B1%3C/text%3E%3C/svg%3E";
+---
+
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<link rel="icon" href={favicon} />
+<meta name="generator" content={Astro.generator} />
+<meta name="theme-color" content="#0e150f" />
+
+<SEO
+  title={title}
+  description={description}
+  canonical={siteUrl}
+  openGraph={{
+    basic: {
+      title: title,
+      type: "website",
+      image: ogImage,
+      url: Astro.url.href,
+    },
+    optional: {
+      description: description,
+      siteName: config.title,
+      locale: config.language.replace('-', '_'),
+    }
+  }}
+  twitter={{
+    card: "summary_large_image",
+    title: title,
+    description: description,
+    image: ogImage,
+  }}
+  extend={{
+    meta: [
+      { name: "keywords", content: config.keywords.join(', ') },
+      { name: "author", content: config.author }
+    ]
+  }}
+/>
+
+<script defer src="https://cloud.umami.is/script.js" data-website-id="8425d2fd-c98b-4a2a-afc0-c033de3baa14"></script>
