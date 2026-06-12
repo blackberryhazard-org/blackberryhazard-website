@@ -12,7 +12,6 @@ export function OrganizationPage() {
     { username: "jonfry1175", avatar: "https://avatars.githubusercontent.com/jonfry1175?size=80" },
     { username: "MeongPuss", avatar: "https://avatars.githubusercontent.com/MeongPuss?size=80" },
     { username: "AlbabRiziq", avatar: "https://avatars.githubusercontent.com/AlbabRiziq?size=80" },
-    { username: "Jee-vim", avatar: "https://avatars.githubusercontent.com/Jee-vim?size=80" },
     { username: "malikzzzz", avatar: "https://avatars.githubusercontent.com/malikzzzz?size=80" },
   ];
 
@@ -231,10 +230,6 @@ export function OrganizationPage() {
 
         </div>
       </section>
-
-      <div className="py-8 text-center text-on-surface-variant text-sm bg-surface">
-        Dibuat dengan ❤️ dari Indonesia 🇮🇩
-      </div>
     </div>
   );
 }
