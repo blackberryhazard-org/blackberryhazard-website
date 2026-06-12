@@ -1,6 +1,25 @@
 import { motion } from 'motion/react';
+import React from 'react';
 
-export function JoinCta() {
+interface JoinCtaProps {
+  titleText1?: string;
+  titleText2?: string;
+  titleText3?: string;
+  titleText4?: string;
+  description?: string;
+  buttonText?: string;
+  href?: string;
+}
+
+export function JoinCta({
+  titleText1 = "LET'S GO",
+  titleText2 = "SAAT",
+  titleText3 = "NYA",
+  titleText4 = "KAMU JOIN!",
+  description = "Jadilah bagian dari komunitas developer terbesar di Indonesia. Tingkatkan skill, perluas jaringan, dan raih kesempatan karir bersama kami!",
+  buttonText = "Join Sekarang",
+  href = "#community"
+}: JoinCtaProps) {
   return (
     <section className="w-full py-20 md:py-32 bg-surface-container border-y border-outline-variant relative overflow-hidden">
       <div
@@ -21,25 +40,23 @@ export function JoinCta() {
           >
             <div>
               <h2 className="text-4xl md:text-5xl font-bold text-on-surface leading-tight">
-                <span className="block">LET'S GO</span>
+                <span className="block">{titleText1}</span>
                 <span className="block text-5xl md:text-6xl mt-2">
-                  <span className="text-primary">SAAT</span>
-                  <span className="text-on-surface">NYA</span>
+                  <span className="text-primary">{titleText2}</span>
+                  <span className="text-on-surface"> {titleText3}</span>
                 </span>
-                <span className="block mt-2">KAMU JOIN!</span>
+                {titleText4 && <span className="block mt-2">{titleText4}</span>}
               </h2>
             </div>
             <p className="text-lg md:text-xl text-on-surface/90 max-w-2xl mx-auto lg:mx-0">
-              Jadilah bagian dari komunitas developer terbesar di Indonesia.
-              Tingkatkan skill, perluas jaringan, dan raih kesempatan karir
-              bersama kami!
+              {description}
             </p>
             <div className="flex justify-center lg:justify-start">
               <a
-                href="#community"
+                href={href}
                 className="flex items-center gap-4 px-8 py-4 bg-primary-container hover:brightness-110 text-on-primary-container rounded-none text-lg font-semibold transition-all hover:gap-6 group"
               >
-                <span>Join Sekarang</span>
+                <span>{buttonText}</span>
                 <svg
                   fill="currentColor"
                   viewBox="0 0 448 512"
